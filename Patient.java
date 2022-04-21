@@ -1,5 +1,5 @@
 public class Patient {
-    private String lastName, firstName, address, phoneNum, DoB;
+    public String lastName, firstName, address, phoneNum, DoB;
     private enum insuranceType{PRIVATE, GOVERNMENT}
     private enum PatientType{PEDIATRIC, ADULT, GERIATRIC}
     private float coPay;

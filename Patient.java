@@ -39,7 +39,10 @@ public class Patient {
         public Allergies getAllergies() {
             return allergies;
         }
-        public void setAllergies(String allergies) {
+        public void setAllergies(Allergies allergies) {
+            this.allergies = allergies;
+        }
+        public void updateAllergies(String allergies){
             if(allergies == "Food"){
                 this.allergies = Allergies.FOOD;
             } else if (allergies == "Medication"){
@@ -54,14 +57,14 @@ public class Patient {
                 ErrorMessage("Allergy must be of type: Food, Medication, Seasonal, Other, None");
             }
         }
-        public void updateAllergies(String allergies){
-            setAllergies(allergies);
-        }
 
         public Illnesses getIllnesses() {
             return illnesses;
         }
-        public void setIllnesses(String illnesses){
+        public void setIllnesses(Illnesses illnesses){
+            this.illnesses = illnesses;
+        }
+        public void updateIllnesses(String illnesses){
             if(illnesses == "Diabetes"){
                 this.illnesses = Illnesses.DIABETES;
             } else if(illnesses == "CHD"){
@@ -76,9 +79,6 @@ public class Patient {
                 ErrorMessage("Illness not recognized, illness must be of type:" +
                         " Diabetes, CHD, Asthma, Other, None");
             }
-        }
-        public void updateIllnesses(String illnesses){
-            setIllnesses(illnesses);
         }
     }
 
@@ -157,7 +157,10 @@ public class Patient {
     public InsuranceType getInsuranceType(){
         return insuranceType;
     }
-    public void setInsuranceType(String insType){
+    public void setInsuranceType(InsuranceType insType){
+        this.insuranceType = insType;
+    }
+    public void updateInsuranceType(String insType){
         if (insType == "Government") {
             this.insuranceType = InsuranceType.GOVERNMENT;
         }else if (insType == "Private"){
@@ -166,14 +169,14 @@ public class Patient {
             ErrorMessage("Patient type must be: Government, Private");
         }
     }
-    public void updateInsuranceType(String insType){
-        setInsuranceType(insType);
-    }
 
     public PatientType getPatientType() {
         return patientType;
     }
-    public void setPatientType(String patientType){
+    public void setPatientType(PatientType patientType){
+        this.patientType = patientType;
+    }
+    public void updatePatientType(String patientType){
         if (patientType == "Pediatric"){
             this.patientType = PatientType.PEDIATRIC;
         } else if (patientType == "Adult"){
@@ -183,9 +186,6 @@ public class Patient {
         } else {
             ErrorMessage("Patient type must be: Geriatric, Adult, Pediatric");
         }
-    }
-    public void updatePatientType(String patientType){
-        setPatientType(patientType);
     }
 
     public float getCoPay() {

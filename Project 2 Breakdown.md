@@ -88,7 +88,7 @@ Project 2 Breakdown
 		- [ ]   Summary Reports
 - Patient Profile Interface
 	- Teammember
-		- Name
+		- Name: Maximillain Mueller
 		- Rationale behind split
 		- Difficulties encountered
 		- What you would do differently

@@ -19,55 +19,56 @@ Project 2 Breakdown
 ## Project Definition
 - Patient
 	- Teammember
-		- Name
-		- Rationale behind split
-		- Difficulties encountered
-		- What you would do differently
+		- Name: Jared Moore
+		- Rationale behind split: Even Split
+		- Difficulties encountered: Storing Enumerated Types
+		- What you would do differently:
 	- Time
-		- Time Spent on implementation:
+		- Time Spent on implementation: 4 hours
 		- Time Spent on testing:
 		- Time Spent on integration:
 	- Method's and Attributes
-		- [ ]   Class Attributes
-			- [ ]   Last Name
-			- [ ]   First Name
-			- [ ]   Address
-			- [ ]   Phone Number
-			- [ ]   DOB
-			- [ ]   Insurance Type
-			- [ ]   Co-Pay
-			- [ ]   Patient Type
-		- [ ]   Medical Conditions
-			- [ ]   Name of physician
-			- [ ]   Contact phone # of Physician
-			- [ ]   Allergies
-			- [ ]   Illnesses
-		- [ ]   Constructor
-		- [ ]   "get" Functions
-			- [ ]   Get Last Name
-			- [ ]   Get First Name
-			- [ ]   Get Address
-			- [ ]   Get Phone
-			- [ ]   Get DOB
-			- [ ]   Get Insurance
-			- [ ]   Get Co-pay
-			- [ ]   Get Patient Type
-			- [ ]   Get Phys Name
-			- [ ]   Get Contact #
-			- [ ]   Get Allergies
-			- [ ]   Get Illnesses
-		- [ ]   "update" Functions
-			- [ ]   Update First Name
-			- [ ]   Update Address
-			- [ ]   Update Phone
-			- [ ]   Update DOB
-			- [ ]   Update Insurance
-			- [ ]   Update Co-pay
-			- [ ]   Update Patient Type
-			- [ ]   Update Phys Name
-			- [ ]   Update Contact #
-			- [ ]   Update Allergies
-			- [ ]   Update Illnesses
+        - [x]   Class Attributes
+            - [x]   Last Name
+            - [x]   First Name
+            - [x]   Address
+            - [x]   Phone Number
+            - [x]   DOB
+            - [x]   Insurance Type
+            - [x]   Co-Pay
+            - [x]   Patient Type
+        - [x]   Medical Conditions
+            - [x]   Name of physician
+            - [x]   Contact phone # of Physician
+            - [x]   Allergies
+            - [x]   Illnesses
+        - [x]   Constructor
+        - [x]   "get" Functions
+            - [x]   Get Last Name
+            - [x]   Get First Name
+            - [x]   Get Address
+            - [x]   Get Phone
+            - [x]   Get DOB
+            - [x]   Get Insurance
+            - [x]   Get Co-pay
+            - [x]   Get Patient Type
+            - [x]   Get Phys Name
+            - [x]   Get Contact #
+            - [x]   Get Allergies
+            - [x]   Get Illnesses
+        - [x]   "update" Functions
+            - [x]   Update First Name
+            - [x]   Update Address
+            - [x]   Update Phone
+            - [x]   Update DOB
+            - [x]   Update Insurance
+            - [x]   Update Co-pay
+            - [x]   Update Patient Type
+            - [x]   Update Phys Name
+            - [x]   Update Contact #
+            - [x]   Update Allergies
+            - [x]   Update Illnesses
+        - [x] Print all Vars at once
 - Patient Database
 	- Teammember
 		- Name
@@ -87,7 +88,7 @@ Project 2 Breakdown
 		- [ ]   Summary Reports
 - Patient Profile Interface
 	- Teammember
-		- Name
+		- Name: Maximillain Mueller
 		- Rationale behind split
 		- Difficulties encountered
 		- What you would do differently

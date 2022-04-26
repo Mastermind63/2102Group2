@@ -1,3 +1,6 @@
+import org.w3c.dom.Attr;
+
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
@@ -5,8 +8,10 @@ import java.io.FileNotFoundException;
 
 
 public class PatientDatabase {
+    public enum AttributeTypes {
+        DOCTOR, INSURANCE, PATIENT_TYPE, ALLERGY, ILLNESS
+    };
 
-    int numPatients;
     ArrayList<Patient> patientDB = new ArrayList<Patient>();
 
     // accepts name of file from which patient profiles will be read
@@ -24,8 +29,8 @@ public class PatientDatabase {
 
         while (file.hasNextLine()) {
             // assume every patient has same num lines (12)?
-            String lastName = file.nextLine();
             String firstName = file.nextLine();
+            String lastName = file.nextLine();
             String address = file.nextLine();
             String phoneNum = file.nextLine();
             String DoB = file.nextLine();
@@ -62,7 +67,7 @@ public class PatientDatabase {
             }
 
             String physName = file.nextLine();
-            String phsyPhone = file.nextLine();
+            String physPhone = file.nextLine();
 
             Patient.MedicalConditions.Allergies allergy = null;
             switch (file.nextLine()) {
@@ -109,28 +114,21 @@ public class PatientDatabase {
             }
 
 
-            Patient patient = new Patient(lastName, firstName, address, phoneNum, DoB, insuranceType, copay, patientType, physName, physName, allergy, illness);
+            Patient patient = new Patient(lastName, firstName, address, phoneNum, DoB, insuranceType, copay, patientType, physName, physPhone, allergy, illness);
             insertProfile(patient);
         }
         file.close();
-
-        System.out.println("Database Loaded");
-        System.out.println("There are " + numPatients + " patient profiles saved.\n");
     }
 
-
-
-
-    // iterative searches of database
-    //    search to compile and print summary reports
-    //    assume profile uniquely defined by last name & dob
-    //    also want to be able to search via other attributes in order to create summary reports
-
     public void insertProfile(Patient newPatient) {
-        // add profile to array list
+        // GUI -- prompt user for profile info & med conditions info
+        //   create new patient via Patient() constructor
+        //   then pass to this method
+
         patientDB.add(newPatient);
-        numPatients += 1;
-        System.out.println("Patient Added: " + newPatient.getLastName());
+        updateDatabase();
+
+        System.out.println("Patient Added: " + newPatient.getLastName());  // remove later (just for testing)
     }
 
     public void deleteProfile(String lastName, String DoB) {
@@ -139,25 +137,138 @@ public class PatientDatabase {
             System.out.println("Patient does not exist.");
         } else {
             patientDB.remove(patientIndex);
-            numPatients -= 1;
+            updateDatabase();
+            System.out.println("Patient has been removed.");
         }
     }
 
+    // TODO: need way of passing textInput from GUI to method
     public void updateProfile(String lastName, String DoB) {
         Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
 
-        // how to  determine which properties to set? (can't update DoB)
-        /*
-        patient.setLastName();
-        ...
-         */
+        // GUI will need to display profile with option for user to select which attribute to modify
+        // when attributes are all modified, have button (or other) to pass new values
+
+        patient.setFirstName(textFieldInput);
+        patient.setLastName(textFieldInput);
+        patient.setAddress(textFieldInput);
+        patient.setPhoneNum(textFieldInput);
+        patient.setInsuranceType(textFieldInput);
+        patient.setCoPay(textFieldInput);
+        patient.setPatientType(textFieldInput);
+        patient.setMedConditions(guiInput);   // will need to create medConditions object first then pass to method
+
+        updateDatabase();   // update database with new patient data
     }
 
     public void displayProfile(String lastName, String DoB) {
         Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
 
-        System.out.println("Last Name of Patient: " + patient.getLastName());
+        patient.PrintPatient();   // this will need to call so GUI function and/or pass the patient reference
     }
+
+    public ArrayList<Patient> getPatientByAttribute(AttributeTypes attribute, String attrValue) {
+        // pass an attribute and a value of that attribute
+        //    ex: getPatientByAttribute(DOCTOR, "Jon Doe") will return list of patients who have Jon Doe as their doctor
+        ArrayList<Patient> patientsWithAttribute = new ArrayList<Patient>();
+
+        for (int i = 0; i < patientDB.size(); i ++) {
+            Patient curPatient = patientDB.get(i);
+
+            switch (attribute) {
+                case DOCTOR:
+                    if (curPatient.getMedConditions().getPhysName().equals(attrValue)) {
+                        patientsWithAttribute.add(curPatient);
+                    }
+                    break;
+                case INSURANCE:
+                    if (attrValue.equals("Private")) {
+                        if (curPatient.getInsuranceType() == Patient.InsuranceType.PRIVATE) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("Government")) {
+                        if (curPatient.getInsuranceType() == Patient.InsuranceType.GOVERNMENT) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    }
+                    break;
+                case PATIENT_TYPE:
+                    if (attrValue.equals("Adult")) {
+                        if (curPatient.getPatientType() == Patient.PatientType.ADULT) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("Geriatric")) {
+                        if (curPatient.getPatientType() == Patient.PatientType.GERIATRIC) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("Pediatric")) {
+                        if (curPatient.getPatientType() == Patient.PatientType.PEDIATRIC) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    }
+                    break;
+                case ALLERGY:
+                    if (attrValue.equals("Food")) {
+                        if (curPatient.getMedConditions().getAllergies() == Patient.MedicalConditions.Allergies.FOOD) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("Medication")) {
+                        if (curPatient.getMedConditions().getAllergies() == Patient.MedicalConditions.Allergies.MEDICATION) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("Seasonal")) {
+                        if (curPatient.getMedConditions().getAllergies() == Patient.MedicalConditions.Allergies.SEASONAL) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("None")) {
+                        if (curPatient.getMedConditions().getAllergies() == Patient.MedicalConditions.Allergies.NONE) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("Other")) {
+                        if (curPatient.getMedConditions().getAllergies() == Patient.MedicalConditions.Allergies.OTHER) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    }
+                    break;
+                case ILLNESS:
+                    if (attrValue.equals("CHD")) {
+                        if (curPatient.getMedConditions().getIllnesses() == Patient.MedicalConditions.Illnesses.CHD) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("Asthma")) {
+                        if (curPatient.getMedConditions().getIllnesses() == Patient.MedicalConditions.Illnesses.ASTHMA) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("Diabetes")) {
+                        if (curPatient.getMedConditions().getIllnesses() == Patient.MedicalConditions.Illnesses.DIABETES) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("None")) {
+                        if (curPatient.getMedConditions().getIllnesses() == Patient.MedicalConditions.Illnesses.NONE) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    } else if (attrValue.equals("Other")) {
+                        if (curPatient.getMedConditions().getIllnesses() == Patient.MedicalConditions.Illnesses.OTHER) {
+                            patientsWithAttribute.add(curPatient);
+                        }
+                    }
+                    break;
+                default:
+                    System.out.println("Not a valid attribute");
+                    break;
+            }
+        }
+        return patientsWithAttribute;
+    }
+
+    // TODO: need to pass/display patient list in GUI
+    public void getSummary(AttributeTypes attribute, String attrValue) {
+        ArrayList<Patient> patientsWithAttribute = getPatientByAttribute(attribute, attrValue);
+
+        // need to display all patients in above arraylist (only name and phone number)
+    }
+
+
 
     public Patient getPatient (String lastName, String DoB) {
         for (int i = 0; i < patientDB.size(); i ++) {
@@ -176,11 +287,94 @@ public class PatientDatabase {
         return -1; // patient not found
     }
 
+    private void updateDatabase() {
+        String fileName = "Profiles_updated.txt";    // just for testing ... will need to overwrite "Profiles.txt" (save backup copies?)
+        PrintWriter outputFile = null;
+        try {
+            outputFile = new PrintWriter(fileName);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("Error opening the file: " + fileName);
+            System.exit(0);
+        }
+
+        // go through each Patient in patientDB
+        for (int i =  0; i < patientDB.size(); i ++) {
+            Patient curPatient = patientDB.get(i);
+
+            outputFile.println(curPatient.getFirstName());
+            outputFile.println(curPatient.getLastName());
+            outputFile.println(curPatient.getAddress());
+            outputFile.println(curPatient.getPhoneNum());
+            outputFile.println(curPatient.getDoB());
+            outputFile.println(curPatient.getCoPay());
+            switch(curPatient.getPatientType())  {
+                case ADULT:
+                    outputFile.println("Adult");
+                    break;
+                case GERIATRIC:
+                    outputFile.println("Geriatric");
+                    break;
+                case PEDIATRIC:
+                    outputFile.println("Pediatric");
+                    break;
+                default:
+                    System.out.println("error writing to file (patient type)");
+                    break;
+            }
+            outputFile.println(curPatient.getMedConditions().getPhysName());
+            outputFile.println(curPatient.getMedConditions().getPhysNumber());
+            switch(curPatient.getMedConditions().getAllergies()) {
+                case FOOD:
+                    outputFile.println("Food");
+                    break;
+                case MEDICATION:
+                    outputFile.println("Medication");
+                    break;
+                case SEASONAL:
+                    outputFile.println("Seasonal");
+                    break;
+                case NONE:
+                    outputFile.println("None");
+                    break;
+                case OTHER:
+                    outputFile.println("Other");
+                    break;
+                default:
+                    System.out.println("error writing to file (allergies)");
+                    break;
+            }
+            switch(curPatient.getMedConditions().getIllnesses()) {
+                case DIABETES:
+                    outputFile.println("Diabetes");
+                    break;
+                case CHD:
+                    outputFile.println("CHD");
+                    break;
+                case ASTHMA:
+                    outputFile.println("Asthma");
+                    break;
+                case NONE:
+                    outputFile.println("None");
+                    break;
+                case OTHER:
+                    outputFile.println("Other");
+                    break;
+                default:
+                    System.out.println("error writing to file (illnesses)");
+                    break;
+            }
+        }
+        outputFile.close();
+    }
 
 
 
 
 
+
+
+    // for testing, will delete later
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -254,7 +448,8 @@ public class PatientDatabase {
                     case "lastName":
                         System.out.print("Enter new lastName: ");
                         patient.setLastName(sc.nextLine());
-                        System.out.println("New last name is: " +  patient.getLastName());
+                        patient.PrintPatient();
+                        db.updateDatabase();
                         break;
                     case "firstName":
                         System.out.print("Enter new firstName: ");
@@ -272,6 +467,7 @@ public class PatientDatabase {
                         System.out.println("New phoneNumber is: " +  patient.getPhoneNum());
                         break;
                     case "EXIT":
+                        db.updateDatabase();
                         curState = -1;
                         System.exit(0);
                         break;
@@ -286,4 +482,5 @@ public class PatientDatabase {
         }
         System.exit(0);
     }
+
 }

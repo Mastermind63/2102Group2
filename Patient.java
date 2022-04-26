@@ -82,7 +82,6 @@ public class Patient {
         }
     }
 
-
     private String lastName, firstName, address, phoneNum, DoB;
     private MedicalConditions medConditions;
     private InsuranceType insuranceType;
@@ -197,6 +196,14 @@ public class Patient {
     public void updateCoPay(float coPay){
         setCoPay(coPay);
     }
+
+    public MedicalConditions getMedConditions() {
+        return this.medConditions;
+    }
+    public void setMedConditions(MedicalConditions medConditions) {
+        this.medConditions = medConditions;
+    }
+
 
     // Error Message
     public void ErrorMessage(String Error){

@@ -1,4 +1,6 @@
+import java.nio.DoubleBuffer;
+
 public class TestMIS{
-    PatientDatabase DB = new PatientDatabase();
-    DB.
+    PatientDatabase list = new PatientDatabase("Profiles.txt");
+    list.add
 }

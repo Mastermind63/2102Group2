@@ -80,9 +80,9 @@ Project 2 Breakdown
 		- Time Spent on testing:
 		- Time Spent on integration:
 	- Method's and Attributes
-		- [ ] Pull From File
+		- [x] Pull From File
 		- [ ]   Insert Profile
-		- [ ]   Delete Profile
+		- [x]   Delete Profile
 		- [ ]   Update Profile
 		- [ ]   Find/Display Profile
 		- [ ]   Summary Reports
@@ -98,11 +98,24 @@ Project 2 Breakdown
         - Time Spent on integration:
     - Method's and Attributes
         - [ ]   Enter a New Patient
+            - [ ] Menu to enter profile data
+            - [ ] Menu to enter medical data
+            - [ ] Button save all data
+                - [ ] Displays message stating successful addition of patient  
         - [ ]   Delete a patient
+            - User supplies last name & dob
+            - [ ] Displays message stating successful deletion of patient
         - [ ]   Find & Display a patient
+            - User supplies last name & dob
+            - [ ] Entire patient profile is displayed
         - [ ]   Find/Display Profile
         - [ ]   Modify a patient Profile
+            - Display profile, select attribute to modify, prompt user to enter new value
+            - [ ] Button to save update, then display new profile
         - [ ]   Search the Database
+            - [ ] Present menu of 5 attributes: doctor, insurance, patient type, allergy, illness
+            - [ ] Display summary report for selected attribute
+                - [ ] Summary report displays name & phone num (not whole profile) 
 
 ## Test Plan
 This is our plan for testing... To be modified.

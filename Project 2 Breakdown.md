@@ -25,7 +25,7 @@ Project 2 Breakdown
 		- What you would do differently:
 	- Time
 		- Time Spent on implementation: 4 hours
-		- Time Spent on testing:
+		- Time Spent on testing: 
 		- Time Spent on integration:
 	- Method's and Attributes
         - [x]   Class Attributes
@@ -87,22 +87,54 @@ Project 2 Breakdown
 		- [ ]   Find/Display Profile
 		- [ ]   Summary Reports
 - Patient Profile Interface
-	- Teammember
-		- Name
-		- Rationale behind split
-		- Difficulties encountered
-		- What you would do differently
-	- Time
-		- Time Spent on implementation:
-		- Time Spent on testing:
-		- Time Spent on integration:
-	- Method's and Attributes
-		- [ ]   Enter a New Patient
-		- [ ]   Delete a patient
-		- [ ]   Find & Display a patient
-		- [ ]   Find/Display Profile
-		- [ ]   Modify a patient Profile
-		- [ ]   Search the Database
+    - Teammember
+        - Name
+        - Rationale behind split
+        - Difficulties encountered
+        - What you would do differently
+    - Time
+        - Time Spent on implementation:
+        - Time Spent on testing:
+        - Time Spent on integration:
+    - Method's and Attributes
+        - [ ]   Enter a New Patient
+        - [ ]   Delete a patient
+        - [ ]   Find & Display a patient
+        - [ ]   Find/Display Profile
+        - [ ]   Modify a patient Profile
+        - [ ]   Search the Database
 
 ## Test Plan
 This is our plan for testing... To be modified.
+- Testing of Completeness:
+  - [ ] Patient Class
+    - [ ] Stores all Necessary information
+    - [ ] Uses enumerated types
+    - [ ] Tested Get Functions
+    - [ ] Tested Update Functions
+    - [ ] Tested Init Functions
+    - [ ] Tested Constructor
+  - [ ] Patient Database
+    - [ ] Import Functionality
+    - [ ] Export Functionality
+    - [ ] 
+  - [ ] GUI Interface
+    - [ ] Interface Accepts database File
+    - [ ] Loop Prompt for action
+    - [ ] GUI Exit Option (top right x box)
+- Testing of Functionality
+  - [ ] Bulk Load Patients
+    - [ ] CLI
+    - [ ] GUI
+  - [ ] Delete a Patient
+    - [ ] CLI
+    - [ ] GUI
+  - [ ] Find and Display Patient
+    - [ ] CLI
+    - [ ] GUI
+  - [ ] Modify a Patient Profile
+    - [ ] CLI
+    - [ ] GUI
+  - [ ] Search Database (only name and phone dispayed)
+    - [ ] CLI
+    - [ ] GUI

@@ -6,3 +6,7 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# Immutable files
+/Project-Assignment-2(2).pdf
+# Database Storage
+/Profiles*

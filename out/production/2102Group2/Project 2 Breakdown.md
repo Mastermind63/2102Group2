@@ -81,11 +81,11 @@ Project 2 Breakdown
 		- Time Spent on integration:
 	- Method's and Attributes
 		- [x] Pull From File
-		- [x]   Insert Profile
+		- [ ]   Insert Profile
 		- [x]   Delete Profile
-		- [x]   Update Profile
-		- [x]   Find/Display Profile
-		- [x]   Summary Reports
+		- [ ]   Update Profile
+		- [ ]   Find/Display Profile
+		- [ ]   Summary Reports
 - Patient Profile Interface
 <<<<<<< HEAD
 	- Teammember
@@ -98,12 +98,12 @@ Project 2 Breakdown
 		- Time Spent on testing:
 		- Time Spent on integration:
 	- Method's and Attributes
-		- [x]   Enter a New Patient
-		- [x]   Delete a patient
-		- [x]   Find & Display a patient
-		- [x]   Find/Display Profile
-		- [x]   Modify a patient Profile
-		- [x]   Search the Database
+		- [ ]   Enter a New Patient
+		- [ ]   Delete a patient
+		- [ ]   Find & Display a patient
+		- [ ]   Find/Display Profile
+		- [ ]   Modify a patient Profile
+		- [ ]   Search the Database
 =======
     - Teammember
         - Name
@@ -139,9 +139,9 @@ Project 2 Breakdown
 ## Test Plan
 This is our plan for testing... To be modified.
 - Testing of Completeness:
-  - [ ] Patient Class
-    - [ ] Stores all Necessary information
-    - [ ] Uses enumerated types
+  - [x] Patient Class
+    - [x] Stores all Necessary information
+    - [x] Uses enumerated types
     - [ ] Tested Get Functions
     - [ ] Tested Update Functions
     - [ ] Tested Init Functions
@@ -155,18 +155,21 @@ This is our plan for testing... To be modified.
     - [ ] Loop Prompt for action
     - [ ] GUI Exit Option (top right x box)
 - Testing of Functionality
-  - [ ] Bulk Load Patients
-    - [ ] CLI
-    - [ ] GUI
+  - [x] Bulk Load Patients
+    - [x] CLI
   - [ ] Delete a Patient
     - [ ] CLI
     - [ ] GUI
-  - [ ] Find and Display Patient
-    - [ ] CLI
-    - [ ] GUI
+  - [x] Find and Display Patient
+    - [x] CLI
+    - [x] GUI
   - [ ] Modify a Patient Profile
     - [ ] CLI
     - [ ] GUI
   - [ ] Search Database (only name and phone dispayed)
     - [ ] CLI
     - [ ] GUI
+- Issues Encountered:
+  - [ ] The system seems to run through the data and replace the copays with their values in floats
+  - [ ] Enumerated Type drop down lists in GUI and MIS
+  - [ ] 

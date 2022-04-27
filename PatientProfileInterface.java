@@ -220,7 +220,7 @@ public class PatientProfileInterface {
 
                 Patient tempPatient = new Patient(tLast, tFirst, tAddress, tNumber, tDOB, tInsurance, tCopay, tPType, tPhysName, tPhysNum, tAllergies, tIllness);
                 Pdb.insertProfile(tempPatient);
-                tempPatient = null;
+                //tempPatient = null; --> this is still the reference to the new patient (ie you're overwriting the just added patient with null)
 
                 DisplayLabel.setText(Pdb.displayProfile(tLast, tDOB));
                 c1.show(PanelContainer, "DisplayCard");
@@ -266,7 +266,7 @@ public class PatientProfileInterface {
                 try {
                     Pdb.deleteProfile(DeleteNameText.getText(), DeleteDobText.getText());
                     DisplayLabel.setText("Successfully Deleted Patient");
-                }catch(Exception delExc){ //catch exception
+                } catch (PatientNotFoundException delExc) { //catch exception
                     DisplayLabel.setText("Delete Operation Failed");
                 }
                 //show display card
@@ -285,6 +285,7 @@ public class PatientProfileInterface {
         ExitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Pdb.updateDatabase();
                 System.exit(0);
             }
         });
@@ -302,6 +303,7 @@ public class PatientProfileInterface {
                 String fDOB = FindDobText.getText();
                 //pass info to logical function
                 DisplayLabel.setText(Pdb.displayProfile(fLast, fDOB));
+
                 //switch to display card
                 c1.show(PanelContainer, "DisplayCard");
                 //clean up variables
@@ -474,6 +476,7 @@ public class PatientProfileInterface {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.print("Enter database filename: ");
         String fp = sc.nextLine();
         sc.close();
 

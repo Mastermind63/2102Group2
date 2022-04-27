@@ -1,6 +1,7 @@
 import org.w3c.dom.Attr;
 
 import java.io.PrintWriter;
+import java.lang.reflect.Executable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
@@ -13,6 +14,7 @@ public class PatientDatabase {
     };
 
     ArrayList<Patient> patientDB = new ArrayList<Patient>();
+    String filename = null;
 
     // accepts name of file from which patient profiles will be read
     // filename provided to system at startup via interface
@@ -21,6 +23,7 @@ public class PatientDatabase {
         Scanner file = null;
         try {
             file = new Scanner(new File(filename));
+            this.filename = filename;
         }
         catch (FileNotFoundException e) {
             System.out.println("Error opening the file: " + filename);
@@ -129,10 +132,11 @@ public class PatientDatabase {
         updateDatabase();
     }
 
-    public void deleteProfile(String lastName, String DoB) {
+    public void deleteProfile(String lastName, String DoB) throws PatientNotFoundException {
         int patientIndex = getPatientIndex(lastName, DoB);
         if (patientIndex == -1) {
             ErrorMessage("Patient does not exist.");
+            throw new PatientNotFoundException("Patient does not exist.");
         } else {
             patientDB.remove(patientIndex);
             updateDatabase();
@@ -141,38 +145,47 @@ public class PatientDatabase {
 
     // TODO: need way of passing textInput from GUI to method
     public String updateProfile(String lastName, String DoB, PatientProfileInterface gui) {
-        Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
+        try {
+            Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
 
-        // GUI will need to display profile with option for user to select which attribute to modify
-        // when attributes are all modified, have button (or other) to pass new values
-        boolean[] boolArray = gui.isChecked();
+            // GUI will need to display profile with option for user to select which attribute to modify
+            // when attributes are all modified, have button (or other) to pass new values
+            boolean[] boolArray = gui.isChecked();
 
-        if (boolArray[0])patient.setFirstName(gui.getUpFirst());
-        if (boolArray[1])patient.setLastName(gui.getUpLast());
-        if (boolArray[2])patient.setAddress(gui.getUpAddress());
-        if (boolArray[3])patient.setPhoneNum(gui.getUpNumber());
-        if (boolArray[4])patient.setInsuranceType(gui.getUpInsurance());
-        if (boolArray[5])patient.setCoPay(gui.getUpCopay());
-        if (boolArray[6])patient.setPatientType(gui.getUpPatientType());
+            if (boolArray[0])patient.setFirstName(gui.getUpFirst());
+            if (boolArray[1])patient.setLastName(gui.getUpLast());
+            if (boolArray[2])patient.setAddress(gui.getUpAddress());
+            if (boolArray[3])patient.setPhoneNum(gui.getUpNumber());
+            if (boolArray[4])patient.setInsuranceType(gui.getUpInsurance());
+            if (boolArray[5])patient.setCoPay(gui.getUpCopay());
+            if (boolArray[6])patient.setPatientType(gui.getUpPatientType());
 
-        //TODO: this doesn't work with how I implemented this
-        //(boolArray[0])patient.setMedConditions(new Patient.MedicalConditions(guiInput, guiInput, guiInput, guiInput));
+            //TODO: this doesn't work with how I implemented this
+            //(boolArray[0])patient.setMedConditions(new Patient.MedicalConditions(guiInput, guiInput, guiInput, guiInput));
 
-        updateDatabase();   // update database with new patient data
-        if (boolArray[1]){
-            return displayProfile(gui.getUpLast(), DoB);
-        }else{
-            return displayProfile(lastName, DoB);
+            updateDatabase();   // update database with new patient data
+            if (boolArray[1]){
+                return displayProfile(gui.getUpLast(), DoB);
+            } else{
+                return displayProfile(lastName, DoB);
+            }
+
+        } catch (PatientNotFoundException e) {
+            return ErrorMessage("Patient not found.");
         }
+
+
+
     }
 
-    public String displayProfile(String lastName, String DoB) {
-        if (getPatientIndex(lastName, DoB) != -1) {
-        Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
-        return patient.PrintPatient();   // this will need to call so GUI function and/or pass the patient reference
-        } else {
-            return ErrorMessage("Patient does not exist");
+    public String displayProfile(String lastName, String DoB){
+        try {
+            Patient patient = getPatient(lastName, DoB);
+            return patient.PrintPatient();
+        } catch (PatientNotFoundException e) {
+            return ErrorMessage("Patient not found.");
         }
+
     }
 
     public ArrayList<Patient> getPatientByAttribute(AttributeTypes attribute, String attrValue) {
@@ -291,31 +304,30 @@ public class PatientDatabase {
 
 
 
-    public Patient getPatient (String lastName, String DoB) {
-        for (int i = 0; i < patientDB.size(); i ++) {
-            if (patientDB.get(i).getLastName().equals(lastName) && patientDB.get(i).getDoB().equals(DoB)) {
-                return patientDB.get(i);
-            }
+    public Patient getPatient (String lastName, String DoB) throws PatientNotFoundException {
+        try {
+            return patientDB.get(getPatientIndex(lastName, DoB));
+        } catch (PatientNotFoundException e) {
+            ErrorMessage("Patient not found.");
         }
-        return null; // patient not found
+        throw new PatientNotFoundException("Patient not found.");
     }
-    private int getPatientIndex (String lastName, String DoB) {
+    private int getPatientIndex (String lastName, String DoB) throws PatientNotFoundException{
         for (int i = 0; i < patientDB.size(); i ++) {
             if (patientDB.get(i).getLastName().equals(lastName) && patientDB.get(i).getDoB().equals(DoB)) {
                 return i;
             }
         }
-        return -1; // patient not found
+        throw new PatientNotFoundException("Patient not found.");
     }
 
-    private void updateDatabase() {
-        String fileName = "ProfilesF.txt";    // just for testing ... will need to overwrite "Profiles.txt" (save backup copies?)
+    public void updateDatabase() {
         PrintWriter outputFile = null;
         try {
-            outputFile = new PrintWriter(fileName);
+            outputFile = new PrintWriter(filename);
         }
         catch (FileNotFoundException e) {
-            System.out.println("Error opening the file: " + fileName);
+            System.out.println("Error opening the file: " + filename);
             System.exit(0);
         }
 
@@ -328,6 +340,17 @@ public class PatientDatabase {
             outputFile.println(curPatient.getAddress());
             outputFile.println(curPatient.getPhoneNum());
             outputFile.println(curPatient.getDoB());
+            switch (curPatient.getInsuranceType()) {
+                case PRIVATE:
+                    outputFile.println("Private");
+                    break;
+                case GOVERNMENT:
+                    outputFile.println("Government");
+                    break;
+                default:
+                    System.out.println("error writing to file (insurance type)");
+                    break;
+            }
             outputFile.println(curPatient.getCoPay());
             switch(curPatient.getPatientType())  {
                 case ADULT:
@@ -387,9 +410,7 @@ public class PatientDatabase {
             }
         }
         outputFile.close();
-
     }
-
 
 
     // Error Message
@@ -398,115 +419,4 @@ public class PatientDatabase {
         System.out.println(ErrorString);
         return ErrorString;
     }
-
-
-    // for testing, will delete later
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter filename: ");
-        String filename = sc.nextLine();
-
-        PatientDatabase db = new PatientDatabase(filename);
-
-        int curState = 0;
-        while (curState != -1) {
-
-            if (curState == 0)  {
-                System.out.println("\n*** Menu ***");
-                System.out.println("(1) Insert Profile");
-                System.out.println("(2) Delete Profile");
-                System.out.println("(3) Update Profile");
-                System.out.println("(4) Display Profile");
-                System.out.print("Enter number selection (enter \"EXIT\" to exit)");
-
-                switch (sc.nextLine()) {
-                    case "1":
-                        curState = 1;
-                        break;
-                    case "2":
-                        curState = 2;
-                        break;
-                    case "3":
-                        curState = 3;
-                        break;
-                    case "4":
-                        curState = 4;
-                        break;
-                    case "EXIT":
-                        curState = -1;
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("Not an option. Please try again.");
-                        break;
-                }
-            }
-
-            else if (curState == 1) {
-                System.out.println("\n*** Insert Profile (\"EXIT\" to exit) ***");
-                curState = 0;
-            }
-            else if (curState == 2)  {
-                System.out.println("\n*** Delete Profile (\"EXIT\" to exit) ***");
-                curState = 0;
-            }
-            else if (curState == 3) {
-                System.out.println("\n*** Update Profile (\"EXIT\" to exit) ***");
-
-                System.out.print("Enter Last Name of Patient to Update: ");
-                String lastName = sc.nextLine();
-                if (lastName.equals("EXIT")) {
-                    curState = -1;
-                    System.exit(0);
-                }
-                System.out.print("Enter Date of Birth of Patient to Update: ");
-                String dob = sc.nextLine();
-                if (dob.equals("EXIT")) {
-                    curState = -1;
-                    System.exit(0);
-                }
-
-                Patient patient = db.getPatient(lastName, dob);
-                System.out.print("Field to Update (lastName, firstName, address, phoneNumber): ");
-                String field = sc.nextLine();
-                switch (field) {
-                    case "lastName":
-                        System.out.print("Enter new lastName: ");
-                        patient.setLastName(sc.nextLine());
-                        patient.PrintPatient();
-                        db.updateDatabase();
-                        break;
-                    case "firstName":
-                        System.out.print("Enter new firstName: ");
-                        patient.setFirstName(sc.nextLine());
-                        System.out.println("New first name is: " +  patient.getFirstName());
-                        break;
-                    case "address":
-                        System.out.print("Enter new address: ");
-                        patient.setAddress(sc.nextLine());
-                        System.out.println("New address is: " +  patient.getAddress());
-                        break;
-                    case "phoneNumber":
-                        System.out.print("Enter new phoneNumber: ");
-                        patient.setPhoneNum(sc.nextLine());
-                        System.out.println("New phoneNumber is: " +  patient.getPhoneNum());
-                        break;
-                    case "EXIT":
-                        db.updateDatabase();
-                        curState = -1;
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("Not a valid field");
-                        break;
-                }
-            }
-
-
-
-        }
-        System.exit(0);
-    }
-
 }

@@ -22,12 +22,12 @@ public class TestMIS{
 
         // test deleteProfile()
         System.out.println("\n\n\n*** TESTING DELETE PROFILE ***");
-        list.deleteProfile("LastName", "DOB");
-        list.getSummary();
+        try {
+            list.deleteProfile("LastName", "DOB");
+        } catch (PatientNotFoundException e) {
 
-        // test updateProfile()
-        // TODO: can't write test for this until updateProfile() method is complete
-        //    need a way to take parameters from the user
+        }
+        list.getSummary();
 
         // test displayProfile()
         System.out.println("\n\n\n*** TESTING DISPLAY PROFILE ***");

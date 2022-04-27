@@ -221,10 +221,13 @@ public class Patient {
         System.out.println("Copay:" + getCoPay() + " Insurance Type: "+ getInsuranceType()+"\n");
 
         return("<html> Patient Report: <br/>" +
-                "Patient Name: " + getLastName() + ", " + getFirstName()+"<br/>" +
-                "Patient DOB: " + getDoB() + " Patient Type: " + getPatientType()+"<br/>" +
-                "Patient Address: " + getAddress()+" Patient Phone #: "+ getPhoneNum() +"<br/>" +
-                "Copay:" + getCoPay() + " Insurance Type: "+ getInsuranceType()+"<br/>");
+                "Patient Name: " + getLastName() + ", " + getFirstName() + "<br/>" +
+                "Patient DOB: " + getDoB() + "<br/>" +
+                "Patient Type: " + getPatientType() + "<br/>" +
+                "Patient Address: " + getAddress() + "<br/>" +
+                "Patient Phone #: "+ getPhoneNum() +"<br/>" +
+                "Copay:" + getCoPay() + "<br/>" +
+                "Insurance Type: "+ getInsuranceType() + "<br/>");
     }
 
     // Print only name & dob

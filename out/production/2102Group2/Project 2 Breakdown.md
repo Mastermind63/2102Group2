@@ -81,12 +81,30 @@ Project 2 Breakdown
 		- Time Spent on integration:
 	- Method's and Attributes
 		- [x] Pull From File
-		- [ ]   Insert Profile
+		- [x]   Insert Profile
 		- [x]   Delete Profile
-		- [ ]   Update Profile
-		- [ ]   Find/Display Profile
-		- [ ]   Summary Reports
+		- [x]   Update Profile
+		- [x]   Find/Display Profile
+		- [x]   Summary Reports
 - Patient Profile Interface
+<<<<<<< HEAD
+	- Teammember
+		- Name: Maximillain Mueller
+		- Rationale behind split
+		- Difficulties encountered
+		- What you would do differently
+	- Time
+		- Time Spent on implementation:
+		- Time Spent on testing:
+		- Time Spent on integration:
+	- Method's and Attributes
+		- [x]   Enter a New Patient
+		- [x]   Delete a patient
+		- [x]   Find & Display a patient
+		- [x]   Find/Display Profile
+		- [x]   Modify a patient Profile
+		- [x]   Search the Database
+=======
     - Teammember
         - Name
         - Rationale behind split
@@ -116,6 +134,7 @@ Project 2 Breakdown
             - [ ] Present menu of 5 attributes: doctor, insurance, patient type, allergy, illness
             - [ ] Display summary report for selected attribute
                 - [ ] Summary report displays name & phone num (not whole profile) 
+>>>>>>> main
 
 ## Test Plan
 This is our plan for testing... To be modified.

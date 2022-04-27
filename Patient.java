@@ -228,8 +228,10 @@ public class Patient {
     }
 
     // Print only name & dob
-    public void PrintSummary() {
+    public String PrintSummary() {
         System.out.println("Patient Name: " + getLastName() + ", " + getFirstName());
         System.out.println("Patient DOB: " + getDoB() + "\n");
+        return("\"Patient Name: \" + getLastName() + \", \" + getFirstName()\n"+
+                "Patient DOB: " + getDoB() + "\n");
     }
 }

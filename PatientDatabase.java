@@ -159,6 +159,10 @@ public class PatientDatabase {
             if (boolArray[4])patient.setInsuranceType(gui.getUpInsurance());
             if (boolArray[5])patient.setCoPay(gui.getUpCopay());
             if (boolArray[6])patient.setPatientType(gui.getUpPatientType());
+            if (boolArray[7])patient.getMedConditions().setPhysName(gui.getUpPhysName());
+            if (boolArray[8])patient.getMedConditions().setPhysNumber(gui.getUpPhysNum());
+            if (boolArray[9])patient.getMedConditions().setAllergies(gui.getUpAllergy());
+            if (boolArray[10])patient.getMedConditions().setIllnesses(gui.getUpIllness());
 
             //TODO: this doesn't work with how I implemented this
             //(boolArray[0])patient.setMedConditions(new Patient.MedicalConditions(guiInput, guiInput, guiInput, guiInput));

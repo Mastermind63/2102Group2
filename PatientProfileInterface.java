@@ -543,8 +543,65 @@ public class PatientProfileInterface {
         }
         return tPType;
     }
+    public String getUpPhysName(){
+        return PatientProfileInterface.this.UpdatePhysNameText.getText();
+    }
+    public String getUpPhysNum(){
+        return PatientProfileInterface.this.UpdatePhysNumText.getText();
+    }
+    public Patient.MedicalConditions.Allergies getUpAllergy(){
+        Patient.MedicalConditions.Allergies tAllergies;
+        int c = UpdateAllergyText.getSelectedIndex();
+        switch(c){
+            case 0:
+                tAllergies = Patient.MedicalConditions.Allergies.FOOD;
+                break;
+            case 1:
+                tAllergies = Patient.MedicalConditions.Allergies.MEDICATION;
+                break;
+            case 2:
+                tAllergies = Patient.MedicalConditions.Allergies.SEASONAL;
+                break;
+            case 3:
+                tAllergies = Patient.MedicalConditions.Allergies.NONE;
+                break;
+            case 4:
+                tAllergies = Patient.MedicalConditions.Allergies.OTHER;
+                break;
+            default:
+                tAllergies = null;
+                break;
+        }
+        return tAllergies;
+    }
+    public Patient.MedicalConditions.Illnesses getUpIllness(){
+        Patient.MedicalConditions.Illnesses tIllness;
+        int d = UpdateIllnessText.getSelectedIndex();
+        switch(d){
+            case 0:
+                tIllness = Patient.MedicalConditions.Illnesses.DIABETES;
+                break;
+            case 1:
+                tIllness = Patient.MedicalConditions.Illnesses.CHD;
+                break;
+            case 2:
+                tIllness = Patient.MedicalConditions.Illnesses.ASTHMA;
+                break;
+            case 3:
+                tIllness = Patient.MedicalConditions.Illnesses.NONE;
+                break;
+            case 4:
+                tIllness = Patient.MedicalConditions.Illnesses.OTHER;
+                break;
+            default:
+                tIllness = null;
+                break;
+        }
+        return tIllness;
+    }
+
     public boolean[] isChecked(){
-        boolean[] r = new boolean[7];
+        boolean[] r = new boolean[11];
 
         if(PatientProfileInterface.this.UpdateFirstCheck.isSelected()){
             r[0] = true;
@@ -582,16 +639,24 @@ public class PatientProfileInterface {
             r[6] = false;
         }
         if(PatientProfileInterface.this.UpdatePhysNameCheck.isSelected()){
+            r[7] = true;
         }else{
+            r[7] = false;
         }
         if(PatientProfileInterface.this.UpdatePhysNumCheck.isSelected()){
+            r[8] = true;
         }else{
+            r[8] = false;
         }
         if(PatientProfileInterface.this.UpdateAllergyCheck.isSelected()){
+            r[9] = true;
         }else{
+            r[9] = false;
         }
         if(PatientProfileInterface.this.UpdateIllnessCheck.isSelected()){
+            r[10] = true;
         }else{
+            r[10] = false;
         }
         return r;
     }

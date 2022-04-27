@@ -783,7 +783,15 @@
             <constraints>
               <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <model>
+                <item value="Food"/>
+                <item value="Medication"/>
+                <item value="Seasonal"/>
+                <item value="None"/>
+                <item value="Other"/>
+              </model>
+            </properties>
           </component>
           <component id="98aff" class="javax.swing.JLabel" binding="UNLabel">
             <constraints>
@@ -814,7 +822,15 @@
             <constraints>
               <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <model>
+                <item value="Diabetes"/>
+                <item value="CHD"/>
+                <item value="Asthma"/>
+                <item value="None"/>
+                <item value="Other"/>
+              </model>
+            </properties>
           </component>
           <component id="6f01" class="javax.swing.JLabel" binding="UITLabel">
             <constraints>

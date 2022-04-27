@@ -301,7 +301,7 @@ public class PatientDatabase {
     }
 
     private void updateDatabase() {
-        String fileName = "Profiles_updated.txt";    // just for testing ... will need to overwrite "Profiles.txt" (save backup copies?)
+        String fileName = "ProfilesF.txt";    // just for testing ... will need to overwrite "Profiles.txt" (save backup copies?)
         PrintWriter outputFile = null;
         try {
             outputFile = new PrintWriter(fileName);

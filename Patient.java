@@ -160,9 +160,9 @@ public class Patient {
         this.insuranceType = insType;
     }
     public void updateInsuranceType(String insType){
-        if (insType == "Government") {
+        if (insType.equals("Government")) {
             this.insuranceType = InsuranceType.GOVERNMENT;
-        }else if (insType == "Private"){
+        }else if (insType.equals("Private")) {
             this.insuranceType = InsuranceType.PRIVATE;
         } else {
             ErrorMessage("Patient type must be: Government, Private");
@@ -206,16 +206,24 @@ public class Patient {
 
 
     // Error Message
-    public void ErrorMessage(String Error){
-        System.out.println("Error: " + Error);
+    public String ErrorMessage(String Error){
+        String ErrorString = "Error: " + Error;
+        System.out.println(ErrorString);
+        return ErrorString;
     }
 
     // Print Patient Variables
     public void PrintPatient(){
-        System.out.println("Patient Report: \n");
-        System.out.println("Patient Name: " + getLastName() + ", " + getFirstName()+"\n");
-        System.out.println("Patient DOB: " + getDoB() + " Patient Type: " + getPatientType()+"\n");
-        System.out.println("Patient Address: " + getAddress()+" Patient Phone #: "+ getPhoneNum() +"\n");
-        System.out.println("Copay:" + getCoPay() + " Insurance Type: "+ getInsuranceType()+"\n");
+        System.out.println("Patient Report:");
+        System.out.println("Patient Name: " + getLastName() + ", " + getFirstName());
+        System.out.println("Patient DOB: " + getDoB() + "\tPatient Type: " + getPatientType());
+        System.out.println("Patient Address: " + getAddress() + "\tPatient Phone #: "+ getPhoneNum());
+        System.out.println("Copay:" + getCoPay() + "\tInsurance Type: "+ getInsuranceType()+"\n");
+    }
+
+    // Print only name & dob
+    public void PrintSummary() {
+        System.out.println("Patient Name: " + getLastName() + ", " + getFirstName());
+        System.out.println("Patient DOB: " + getDoB() + "\n");
     }
 }

@@ -127,18 +127,15 @@ public class PatientDatabase {
 
         patientDB.add(newPatient);
         updateDatabase();
-
-        System.out.println("Patient Added: " + newPatient.getLastName());  // remove later (just for testing)
     }
 
     public void deleteProfile(String lastName, String DoB) {
         int patientIndex = getPatientIndex(lastName, DoB);
         if (patientIndex == -1) {
-            System.out.println("Patient does not exist.");
+            ErrorMessage("Patient does not exist.");
         } else {
             patientDB.remove(patientIndex);
             updateDatabase();
-            System.out.println("Patient has been removed.");
         }
     }
 
@@ -149,6 +146,7 @@ public class PatientDatabase {
         // GUI will need to display profile with option for user to select which attribute to modify
         // when attributes are all modified, have button (or other) to pass new values
 
+        /*
         patient.setFirstName(textFieldInput);
         patient.setLastName(textFieldInput);
         patient.setAddress(textFieldInput);
@@ -156,15 +154,18 @@ public class PatientDatabase {
         patient.setInsuranceType(textFieldInput);
         patient.setCoPay(textFieldInput);
         patient.setPatientType(textFieldInput);
-        patient.setMedConditions(guiInput);   // will need to create medConditions object first then pass to method
-
+        patient.setMedConditions(new Patient.MedicalConditions(guiInput, guiInput, guiInput, guiInput));
+        */
         updateDatabase();   // update database with new patient data
     }
 
     public void displayProfile(String lastName, String DoB) {
-        Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
-
-        patient.PrintPatient();   // this will need to call so GUI function and/or pass the patient reference
+        if (getPatientIndex(lastName, DoB) != -1) {
+            Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
+            patient.PrintPatient();     // this will need to call so GUI function and/or pass the patient reference
+        } else {
+            ErrorMessage("Patient does not exist");
+        }
     }
 
     public ArrayList<Patient> getPatientByAttribute(AttributeTypes attribute, String attrValue) {
@@ -266,6 +267,18 @@ public class PatientDatabase {
         ArrayList<Patient> patientsWithAttribute = getPatientByAttribute(attribute, attrValue);
 
         // need to display all patients in above arraylist (only name and phone number)
+        System.out.println("Patients with AttributeType: " + attribute.toString() + " with value: " + attrValue);
+        for (int i = 0; i < patientsWithAttribute.size(); i ++) {
+            Patient patient = patientsWithAttribute.get(i);
+            patient.PrintSummary();
+        }
+    }
+
+    public void getSummary() {
+        for (int i = 0; i < patientDB.size(); i ++) {
+            Patient patient = patientDB.get(i);
+            patient.PrintSummary();
+        }
     }
 
 
@@ -366,12 +379,17 @@ public class PatientDatabase {
             }
         }
         outputFile.close();
+
     }
 
 
 
-
-
+    // Error Message
+    public String ErrorMessage(String Error){
+        String ErrorString = "Error: PatientDatabase: " + Error;
+        System.out.println(ErrorString);
+        return ErrorString;
+    }
 
 
     // for testing, will delete later

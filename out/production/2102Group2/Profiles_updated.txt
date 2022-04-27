@@ -1,5 +1,5 @@
 Vlaho
-MUNIRA
+Munira
 32 Brown Blvd
 8002341623
 1994-6-12
@@ -348,5 +348,16 @@ Wallis
 Geriatric
 Margaux Sparrow
 5056445414
+Food
+Asthma
+FirstName
+LastName
+Address
+PhoneNum
+DOB
+1000.0
+Pediatric
+Dr. Doctor
+Dr.PhoneNum
 Food
 Asthma

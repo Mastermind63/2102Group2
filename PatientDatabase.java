@@ -263,15 +263,16 @@ public class PatientDatabase {
     }
 
     // TODO: need to pass/display patient list in GUI
-    public void getSummary(AttributeTypes attribute, String attrValue) {
+    public void getSummary(AttributeTypes attribute, String attrValue, PatientProfileInterface gui) {
         ArrayList<Patient> patientsWithAttribute = getPatientByAttribute(attribute, attrValue);
-
+        gui.setDisplayLabel("<html> ");
         // need to display all patients in above arraylist (only name and phone number)
         System.out.println("Patients with AttributeType: " + attribute.toString() + " with value: " + attrValue);
         for (int i = 0; i < patientsWithAttribute.size(); i ++) {
             Patient patient = patientsWithAttribute.get(i);
-            patient.PrintSummary();
+            gui.appendDisplayLabel(patient.PrintSummary());
         }
+        gui.appendDisplayLabel(" <html>");
     }
 
     public void getSummary() {

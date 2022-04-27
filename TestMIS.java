@@ -36,8 +36,9 @@ public class TestMIS{
 
         // test getSummary()
         System.out.println("\n\n\n*** TESTING GET SUMMARY ***");
-        list.getSummary(PatientDatabase.AttributeTypes.DOCTOR, "Alon Mayer");
-        list.getSummary(PatientDatabase.AttributeTypes.ILLNESS, "Asthma");
+        //TODO: Change to match new functionality of getSummary
+        //list.getSummary(PatientDatabase.AttributeTypes.DOCTOR, "Alon Mayer");
+        //list.getSummary(PatientDatabase.AttributeTypes.ILLNESS, "Asthma");
     }
 
 

@@ -60,6 +60,8 @@ public class PatientProfileInterface {
     private JComboBox SearchAttributeText;
     private JButton SearchSubmitButton;
     private JLabel SearchLabel;
+    private JLabel SearchAttributeLabel;
+    private JTextField SearchSpecifyText;
 
 
     private CardLayout c1 = (CardLayout)PanelContainer.getLayout();
@@ -270,6 +272,7 @@ public class PatientProfileInterface {
                 //create enum type and get index selected from gui
                 PatientDatabase.AttributeTypes searchAttribute;
                 int attributeIndex = SearchAttributeText.getSelectedIndex();
+                String specificAttribute = SearchSpecifyText.getText();
                 //set enum type to selected option
                 switch(attributeIndex){
                     case 0:
@@ -292,7 +295,7 @@ public class PatientProfileInterface {
                         break;
                 }
                 //call search function
-
+                Pdb.getSummary(searchAttribute, specificAttribute, PatientProfileInterface.this);
 
                 c1.show(PanelContainer, "DisplayCard");
             }
@@ -317,6 +320,12 @@ public class PatientProfileInterface {
         mainframe.setVisible(true);
     }
 
+    public void setDisplayLabel(String text){
+        PatientProfileInterface.this.DisplayLabel.setText(text);
+    }
+    public void appendDisplayLabel(String text){
+        PatientProfileInterface.this.DisplayLabel.setText(PatientProfileInterface.this.DisplayLabel.getText() + text);
+    }
 
 /*    public void exitCode(PatientDatabase finDB, String filename){
         FileWriter fooWriter = null;

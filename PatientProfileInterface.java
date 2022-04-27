@@ -167,7 +167,7 @@ public class PatientProfileInterface {
                 Pdb.insertProfile(tempPatient);
                 tempPatient = null;
 
-                DisplayLabel.setText(Pdb.displayProfile(tLast, tNumber));
+                DisplayLabel.setText(Pdb.displayProfile(tLast, tDOB));
                 c1.show(PanelContainer, "DisplayCard");
 
                 //clean up text fields

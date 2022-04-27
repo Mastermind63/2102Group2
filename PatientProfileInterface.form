@@ -153,7 +153,7 @@
               <text value="Patient Type:"/>
             </properties>
           </component>
-          <component id="99c06" class="javax.swing.JTextField" binding="birchTextField" default-binding="true">
+          <component id="99c06" class="javax.swing.JTextField" binding="newLastText">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -163,7 +163,7 @@
               <text value=" "/>
             </properties>
           </component>
-          <component id="408e8" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="408e8" class="javax.swing.JTextField" binding="newFirstText">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -171,7 +171,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="7a08f" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+          <component id="7a08f" class="javax.swing.JTextField" binding="newAddressText">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -179,7 +179,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="4837e" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+          <component id="4837e" class="javax.swing.JTextField" binding="newNumText">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -187,7 +187,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="40727" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+          <component id="40727" class="javax.swing.JTextField" binding="newDobText">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -195,7 +195,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="1cccd" class="javax.swing.JTextField" binding="textField7" default-binding="true">
+          <component id="1cccd" class="javax.swing.JTextField" binding="newCopayText">
             <constraints>
               <grid row="6" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -203,18 +203,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="bdf14" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
-            <constraints>
-              <grid row="5" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <model>
-                <item value="Private"/>
-                <item value="Government"/>
-              </model>
-            </properties>
-          </component>
-          <component id="2b0c8" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+          <component id="2b0c8" class="javax.swing.JComboBox" binding="newTypeText">
             <constraints>
               <grid row="7" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -231,6 +220,17 @@
               <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
+          <component id="fa6d9" class="javax.swing.JComboBox" binding="newInsuranceText">
+            <constraints>
+              <grid row="5" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <model>
+                <item value="Private"/>
+                <item value="Government"/>
+              </model>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="edbfa" binding="NewPatientPanel2" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -281,7 +281,7 @@
               <text value="Illnesses:"/>
             </properties>
           </component>
-          <component id="bda56" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="bda56" class="javax.swing.JTextField" binding="newPhysNameText">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -289,7 +289,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="c7378" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+          <component id="c7378" class="javax.swing.JTextField" binding="newPhysNumText">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -297,7 +297,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="311f0" class="javax.swing.JComboBox" binding="comboBox3" default-binding="true">
+          <component id="311f0" class="javax.swing.JComboBox" binding="newAllergiesText">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -306,12 +306,12 @@
                 <item value="Food"/>
                 <item value="Medication"/>
                 <item value="Seasonal"/>
-                <item value="Other"/>
                 <item value="None"/>
+                <item value="Other"/>
               </model>
             </properties>
           </component>
-          <component id="bc429" class="javax.swing.JComboBox" binding="comboBox4" default-binding="true">
+          <component id="bc429" class="javax.swing.JComboBox" binding="newIllnessText">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -320,8 +320,8 @@
                 <item value="Diabetes"/>
                 <item value="CHD"/>
                 <item value="Asthma"/>
-                <item value="Other"/>
                 <item value="None"/>
+                <item value="Other"/>
               </model>
             </properties>
           </component>
@@ -348,15 +348,64 @@
               <text value="Return To Main Menu"/>
             </properties>
           </component>
-          <component id="87527" class="javax.swing.JTextPane" binding="DisplayPane">
+          <component id="87be8" class="javax.swing.JLabel" binding="DisplayLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
-              </grid>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value=""/>
             </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="c0285" binding="DeletePatientPanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="DeletePatientCard"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="976a9" class="javax.swing.JTextField" binding="DeleteNameText">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="32a89" class="javax.swing.JLabel" binding="deleteLabel1">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Enter Patient's Last Name:"/>
+            </properties>
+          </component>
+          <component id="939ce" class="javax.swing.JButton" binding="DeleteSubmitButton">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Delete Patient"/>
+            </properties>
+          </component>
+          <component id="46044" class="javax.swing.JLabel" binding="deleteLabel2">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Enter Patient's Date of Birth:"/>
+            </properties>
+          </component>
+          <component id="338d6" class="javax.swing.JTextField" binding="DeleteDobText">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
           </component>
         </children>
       </grid>

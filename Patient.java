@@ -213,12 +213,18 @@ public class Patient {
     }
 
     // Print Patient Variables
-    public void PrintPatient(){
-        System.out.println("Patient Report:");
-        System.out.println("Patient Name: " + getLastName() + ", " + getFirstName());
-        System.out.println("Patient DOB: " + getDoB() + "\tPatient Type: " + getPatientType());
-        System.out.println("Patient Address: " + getAddress() + "\tPatient Phone #: "+ getPhoneNum());
-        System.out.println("Copay:" + getCoPay() + "\tInsurance Type: "+ getInsuranceType()+"\n");
+    public String PrintPatient(){
+        System.out.println("Patient Report: \n");
+        System.out.println("Patient Name: " + getLastName() + ", " + getFirstName()+"\n");
+        System.out.println("Patient DOB: " + getDoB() + " Patient Type: " + getPatientType()+"\n");
+        System.out.println("Patient Address: " + getAddress()+" Patient Phone #: "+ getPhoneNum() +"\n");
+        System.out.println("Copay:" + getCoPay() + " Insurance Type: "+ getInsuranceType()+"\n");
+
+        return("Patient Report: \n" +
+                "Patient Name: " + getLastName() + ", " + getFirstName()+"\n" +
+                "Patient DOB: " + getDoB() + " Patient Type: " + getPatientType()+"\n" +
+                "Patient Address: " + getAddress()+" Patient Phone #: "+ getPhoneNum() +"\n" +
+                "Copay:" + getCoPay() + " Insurance Type: "+ getInsuranceType()+"\n");
     }
 
     // Print only name & dob

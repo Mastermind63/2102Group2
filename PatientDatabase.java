@@ -159,10 +159,10 @@ public class PatientDatabase {
         updateDatabase();   // update database with new patient data
     }
 
-    public void displayProfile(String lastName, String DoB) {
+    public String displayProfile(String lastName, String DoB) {
         if (getPatientIndex(lastName, DoB) != -1) {
-            Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
-            patient.PrintPatient();     // this will need to call so GUI function and/or pass the patient reference
+        Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
+        return patient.PrintPatient();   // this will need to call so GUI function and/or pass the patient reference
         } else {
             ErrorMessage("Patient does not exist");
         }

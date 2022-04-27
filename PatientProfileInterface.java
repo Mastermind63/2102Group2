@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.Scanner;
 
 public class PatientProfileInterface {
@@ -103,6 +101,11 @@ public class PatientProfileInterface {
     private JLabel UPNumLabel;
     private JLabel UAllergyLabel;
     private JLabel UIllnessLabel;
+    private JTextField UpdatePTUDobText;
+    private JTextField UpdatePTUNameText;
+    private JLabel PTULabel;
+    private JLabel PTUNameLabel;
+    private JLabel PTUDobLabel;
 
 
     private CardLayout c1 = (CardLayout)PanelContainer.getLayout();
@@ -152,7 +155,6 @@ public class PatientProfileInterface {
                         break;
                     default:
                         tInsurance = null;
-                        System.out.println("SHIT DIDNT WORK");
                         break;
                 }
                 Patient.PatientType tPType;
@@ -443,6 +445,10 @@ public class PatientProfileInterface {
         UpdateSubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                DisplayLabel.setText(Pdb.updateProfile(UpdatePTUNameText.getText(), UpdatePTUDobText.getText(), PatientProfileInterface.this));
+
+                //switch to display card
                 c1.show(PanelContainer, "DisplayCard");
 
                 //reset the checkboxes
@@ -457,6 +463,10 @@ public class PatientProfileInterface {
                 UpdatePhysNumCheck.setSelected(false);
                 UpdateAllergyCheck.setSelected(false);
                 UpdateIllnessCheck.setSelected(false);
+
+                //reset textfields
+                UpdatePTUDobText.setText(null);
+                UpdatePTUNameText.setText(null);
             }
         });
 
@@ -479,6 +489,108 @@ public class PatientProfileInterface {
     }
     public void appendDisplayLabel(String text){
         PatientProfileInterface.this.DisplayLabel.setText(PatientProfileInterface.this.DisplayLabel.getText() + text);
+    }
+    public String getUpFirst(){
+        return PatientProfileInterface.this.UpdateFirstText.getText();
+    }
+    public String getUpLast(){
+        return PatientProfileInterface.this.UpdateLastText.getText();
+    }
+    public String getUpAddress(){
+        return PatientProfileInterface.this.UpdateAddressText.getText();
+    }
+    public String getUpNumber(){
+        return PatientProfileInterface.this.UpdateNumText.getText();
+    }
+    public float getUpCopay(){
+        return Float.valueOf(PatientProfileInterface.this.UpdateCopayText.getText());
+    }
+    public Patient.InsuranceType getUpInsurance(){
+        Patient.InsuranceType tInsurance;
+        int a = PatientProfileInterface.this.UpdateInsuranceText.getSelectedIndex();
+        switch(a){
+            case 0:
+                tInsurance = Patient.InsuranceType.PRIVATE;
+                break;
+            case 1:
+                tInsurance = Patient.InsuranceType.GOVERNMENT;
+                break;
+            default:
+                tInsurance = null;
+                break;
+        }
+        return tInsurance;
+    }
+    public Patient.PatientType getUpPatientType(){
+        Patient.PatientType tPType;
+        int b = PatientProfileInterface.this.UpdatePTText.getSelectedIndex();
+        switch(b){
+            case 0:
+                tPType = Patient.PatientType.PEDIATRIC;
+                break;
+            case 1:
+                tPType = Patient.PatientType.ADULT;
+                break;
+            case 2:
+                tPType = Patient.PatientType.GERIATRIC;
+                break;
+            default:
+                tPType = null;
+                break;
+        }
+        return tPType;
+    }
+    public boolean[] isChecked(){
+        boolean[] r = new boolean[7];
+
+        if(PatientProfileInterface.this.UpdateFirstCheck.isSelected()){
+            r[0] = true;
+        }else{
+            r[0] = false;
+        }
+        if(PatientProfileInterface.this.UpdateLastCheck.isSelected()){
+            r[1] = true;
+        }else{
+            r[1] = false;
+        }
+        if(PatientProfileInterface.this.UpdateAddressCheck.isSelected()){
+            r[2] = true;
+        }else{
+            r[2] = false;
+        }
+        if(PatientProfileInterface.this.UpdateNumberCheck.isSelected()){
+            r[3] = true;
+        }else{
+            r[3] = false;
+        }
+        if(PatientProfileInterface.this.UpdateInsuranceCheck.isSelected()){
+            r[4] = true;
+        }else{
+            r[4] = false;
+        }
+        if(PatientProfileInterface.this.UpdateCopayCheck.isSelected()){
+            r[5] = true;
+        }else{
+            r[5] = false;
+        }
+        if(PatientProfileInterface.this.UpdatePTCheck.isSelected()){
+            r[6] = true;
+        }else{
+            r[6] = false;
+        }
+        if(PatientProfileInterface.this.UpdatePhysNameCheck.isSelected()){
+        }else{
+        }
+        if(PatientProfileInterface.this.UpdatePhysNumCheck.isSelected()){
+        }else{
+        }
+        if(PatientProfileInterface.this.UpdateAllergyCheck.isSelected()){
+        }else{
+        }
+        if(PatientProfileInterface.this.UpdateIllnessCheck.isSelected()){
+        }else{
+        }
+        return r;
     }
 
 /*    public void exitCode(PatientDatabase finDB, String filename){

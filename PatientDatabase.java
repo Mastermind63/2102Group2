@@ -140,23 +140,30 @@ public class PatientDatabase {
     }
 
     // TODO: need way of passing textInput from GUI to method
-    public void updateProfile(String lastName, String DoB) {
+    public String updateProfile(String lastName, String DoB, PatientProfileInterface gui) {
         Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
 
         // GUI will need to display profile with option for user to select which attribute to modify
         // when attributes are all modified, have button (or other) to pass new values
+        boolean[] boolArray = gui.isChecked();
 
-        /*
-        patient.setFirstName(textFieldInput);
-        patient.setLastName(textFieldInput);
-        patient.setAddress(textFieldInput);
-        patient.setPhoneNum(textFieldInput);
-        patient.setInsuranceType(textFieldInput);
-        patient.setCoPay(textFieldInput);
-        patient.setPatientType(textFieldInput);
-        patient.setMedConditions(new Patient.MedicalConditions(guiInput, guiInput, guiInput, guiInput));
-        */
+        if (boolArray[0])patient.setFirstName(gui.getUpFirst());
+        if (boolArray[1])patient.setLastName(gui.getUpLast());
+        if (boolArray[2])patient.setAddress(gui.getUpAddress());
+        if (boolArray[3])patient.setPhoneNum(gui.getUpNumber());
+        if (boolArray[4])patient.setInsuranceType(gui.getUpInsurance());
+        if (boolArray[5])patient.setCoPay(gui.getUpCopay());
+        if (boolArray[6])patient.setPatientType(gui.getUpPatientType());
+
+        //TODO: this doesn't work with how I implemented this
+        //(boolArray[0])patient.setMedConditions(new Patient.MedicalConditions(guiInput, guiInput, guiInput, guiInput));
+
         updateDatabase();   // update database with new patient data
+        if (boolArray[1]){
+            return displayProfile(gui.getUpLast(), DoB);
+        }else{
+            return displayProfile(lastName, DoB);
+        }
     }
 
     public String displayProfile(String lastName, String DoB) {

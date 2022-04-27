@@ -219,6 +219,8 @@ public class Patient {
         System.out.println("Patient DOB: " + getDoB() + " Patient Type: " + getPatientType()+"\n");
         System.out.println("Patient Address: " + getAddress()+" Patient Phone #: "+ getPhoneNum() +"\n");
         System.out.println("Copay:" + getCoPay() + " Insurance Type: "+ getInsuranceType()+"\n");
+        System.out.println("Physician Name: " + medConditions.getPhysName() + " #: " + medConditions.getPhysNumber() +"\n");
+        System.out.println("Patient Allergies: "+ medConditions.getAllergies() + " Illnesses: " + medConditions.getIllnesses()+"\n");
 
         return("<html> Patient Report: <br/>" +
                 "Patient Name: " + getLastName() + ", " + getFirstName() + "<br/>" +
@@ -227,7 +229,11 @@ public class Patient {
                 "Patient Address: " + getAddress() + "<br/>" +
                 "Patient Phone #: "+ getPhoneNum() +"<br/>" +
                 "Copay:" + getCoPay() + "<br/>" +
-                "Insurance Type: "+ getInsuranceType() + "<br/>");
+                "Insurance Type: "+ getInsuranceType() + "<br/>"+
+                "Physician Name: " + medConditions.getPhysName() + "<br/>" +
+                "Physician Number: " + medConditions.getPhysNumber() + "<br/>"+
+                "Patient Allergies: "+ medConditions.getAllergies() + "<br/>"+
+                "Illnesses: " + medConditions.getIllnesses()+ "<br/>");
     }
 
     // Print only name & dob

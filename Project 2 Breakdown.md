@@ -139,9 +139,9 @@ Project 2 Breakdown
 ## Test Plan
 This is our plan for testing... To be modified.
 - Testing of Completeness:
-  - [ ] Patient Class
-    - [ ] Stores all Necessary information
-    - [ ] Uses enumerated types
+  - [x] Patient Class
+    - [x] Stores all Necessary information
+    - [x] Uses enumerated types
     - [ ] Tested Get Functions
     - [ ] Tested Update Functions
     - [ ] Tested Init Functions
@@ -155,15 +155,14 @@ This is our plan for testing... To be modified.
     - [ ] Loop Prompt for action
     - [ ] GUI Exit Option (top right x box)
 - Testing of Functionality
-  - [ ] Bulk Load Patients
-    - [ ] CLI
-    - [ ] GUI
+  - [x] Bulk Load Patients
+    - [x] CLI
   - [ ] Delete a Patient
     - [ ] CLI
     - [ ] GUI
-  - [ ] Find and Display Patient
-    - [ ] CLI
-    - [ ] GUI
+  - [x] Find and Display Patient
+    - [x] CLI
+    - [x] GUI
   - [ ] Modify a Patient Profile
     - [ ] CLI
     - [ ] GUI
@@ -172,4 +171,5 @@ This is our plan for testing... To be modified.
     - [ ] GUI
 - Issues Encountered:
   - [ ] The system seems to run through the data and replace the copays with their values in floats
+  - [ ] Enumerated Type drop down lists in GUI and MIS
   - [ ] 

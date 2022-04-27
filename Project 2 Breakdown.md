@@ -170,3 +170,6 @@ This is our plan for testing... To be modified.
   - [ ] Search Database (only name and phone dispayed)
     - [ ] CLI
     - [ ] GUI
+- Issues Encountered:
+  - [ ] The system seems to run through the data and replace the copays with their values in floats
+  - [ ] 

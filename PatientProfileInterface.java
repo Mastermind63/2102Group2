@@ -179,20 +179,20 @@ public class PatientProfileInterface {
                 newCopayText.setText(null);
                 newPhysNameText.setText(null);
                 newPhysNumText.setText(null);
-                /*
+
                 //clean up variables
-                tLast = Null;
-                tFirst = Null;
-                tAddress = Null;
-                tNumber = Null;
-                tDOB = Null;
-                tInsurance = Null;
-                tCopay = Null;
-                tPType = Null;
-                tPhysName = Null;
-                tPhysNum = Null;
-                tAllergies = Null;
-                tIllness = Null;*/
+                tLast = null;
+                tFirst = null;
+                tAddress = null;
+                tNumber = null;
+                tDOB = null;
+                tInsurance = null;
+                tCopay = 0.0f;
+                tPType = null;
+                tPhysName = null;
+                tPhysNum = null;
+                tAllergies = null;
+                tIllness = null;
             }
         });
 

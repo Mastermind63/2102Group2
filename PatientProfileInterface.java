@@ -285,6 +285,7 @@ public class PatientProfileInterface {
         ExitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //update the database and exit program
                 Pdb.updateDatabase();
                 System.exit(0);
             }
@@ -487,6 +488,8 @@ public class PatientProfileInterface {
         mainframe.setVisible(true);
     }
 
+
+    //PUBLIC METHODS TO BE CALLED FROM OTHER CLASSES
     public void setDisplayLabel(String text){
         PatientProfileInterface.this.DisplayLabel.setText(text);
     }
@@ -661,17 +664,5 @@ public class PatientProfileInterface {
         return r;
     }
 
-/*    public void exitCode(PatientDatabase finDB, String filename){
-        FileWriter fooWriter = null;
-        try{
-            fooWriter = new FileWriter(filename, false); // true to append
-                                                                // false to overwrite.
-
-            fooWriter.write("New Contents\n");
-            fooWriter.close();
-        }catch(IOException ioe){
-            System.out.println("File Not Opened");
-        }
-    }*/
 }
 

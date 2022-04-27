@@ -540,6 +540,13 @@ public class PatientProfileInterface {
         String fp = sc.nextLine();
         sc.close();
 
+        JFrame mainframe = new JFrame("MIS");
+        mainframe.setContentPane(new PatientProfileInterface(fp).PanelContainer);
+        mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainframe.pack();
+        mainframe.setVisible(true);
+
+        /*
         // Scan again or open
         while (true) {
             try {
@@ -556,6 +563,7 @@ public class PatientProfileInterface {
                 sc.close();
             }
         }
+         */
     }
 
     public void setDisplayLabel(String text){

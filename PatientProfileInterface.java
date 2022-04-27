@@ -56,6 +56,10 @@ public class PatientProfileInterface {
     private JButton FindSubmitButton;
     private JTextField FindDobText;
     private JLabel FindDobLable;
+    private JPanel SearchPanel;
+    private JComboBox SearchAttributeText;
+    private JButton SearchSubmitButton;
+    private JLabel SearchLabel;
 
 
     private CardLayout c1 = (CardLayout)PanelContainer.getLayout();
@@ -258,6 +262,45 @@ public class PatientProfileInterface {
                 //clean up variables
                 fLast = null;
                 fDOB = null;
+            }
+        });
+        SearchSubmitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //create enum type and get index selected from gui
+                PatientDatabase.AttributeTypes searchAttribute;
+                int attributeIndex = SearchAttributeText.getSelectedIndex();
+                //set enum type to selected option
+                switch(attributeIndex){
+                    case 0:
+                        searchAttribute = PatientDatabase.AttributeTypes.DOCTOR;
+                        break;
+                    case 1:
+                        searchAttribute = PatientDatabase.AttributeTypes.INSURANCE;
+                        break;
+                    case 2:
+                        searchAttribute = PatientDatabase.AttributeTypes.PATIENT_TYPE;
+                        break;
+                    case 3:
+                        searchAttribute = PatientDatabase.AttributeTypes.ALLERGY;
+                        break;
+                    case 4:
+                        searchAttribute = PatientDatabase.AttributeTypes.ILLNESS;
+                        break;
+                    default:
+                        searchAttribute = null;
+                        break;
+                }
+                //call search function
+
+
+                c1.show(PanelContainer, "DisplayCard");
+            }
+        });
+        DatabaseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                c1.show(PanelContainer, "SearchCard");
             }
         });
     }

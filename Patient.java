@@ -206,8 +206,10 @@ public class Patient {
 
 
     // Error Message
-    public void ErrorMessage(String Error){
-        System.out.println("Error: " + Error);
+    public String ErrorMessage(String Error){
+        String ErrorString = "Error: " + Error;
+        System.out.println(ErrorString);
+        return ErrorString;
     }
 
     // Print Patient Variables

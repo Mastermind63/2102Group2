@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Scanner;
 
 public class PatientProfileInterface {
@@ -62,6 +64,45 @@ public class PatientProfileInterface {
     private JLabel SearchLabel;
     private JLabel SearchAttributeLabel;
     private JTextField SearchSpecifyText;
+    private JPanel UpdatePanel1;
+    private JCheckBox UpdateFirstCheck;
+    private JCheckBox UpdateLastCheck;
+    private JCheckBox UpdateNumberCheck;
+    private JCheckBox UpdateInsuranceCheck;
+    private JCheckBox UpdateCopayCheck;
+    private JCheckBox UpdateAddressCheck;
+    private JCheckBox UpdatePTCheck;
+    private JButton UpdateButtonOne;
+    private JLabel ChangeTitleLabel;
+    private JCheckBox UpdatePhysNameCheck;
+    private JCheckBox UpdatePhysNumCheck;
+    private JCheckBox UpdateAllergyCheck;
+    private JCheckBox UpdateIllnessCheck;
+    private JPanel UpdatePanel2;
+    private JButton UpdateSubmitButton;
+    private JTextField UpdateFirstText;
+    private JTextField UpdatePhysNameText;
+    private JTextField UpdateLastText;
+    private JTextField UpdatePhysNumText;
+    private JTextField UpdateAddressText;
+    private JComboBox UpdateAllergyText;
+    private JTextField UpdateNumText;
+    private JComboBox UpdateIllnessText;
+    private JComboBox UpdateInsuranceText;
+    private JTextField UpdateCopayText;
+    private JComboBox UpdatePTText;
+    private JLabel UT2Label;
+    private JLabel UFLabel;
+    private JLabel ULLabel;
+    private JLabel UALabel;
+    private JLabel UNLabel;
+    private JLabel UITLabel;
+    private JLabel UCPLabel;
+    private JLabel UPTLabel;
+    private JLabel UPNameLabel;
+    private JLabel UPNumLabel;
+    private JLabel UAllergyLabel;
+    private JLabel UIllnessLabel;
 
 
     private CardLayout c1 = (CardLayout)PanelContainer.getLayout();
@@ -306,6 +347,119 @@ public class PatientProfileInterface {
                 c1.show(PanelContainer, "SearchCard");
             }
         });
+        UpdateButtonOne.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //logic to see what text fields to display
+                //if a use selected to change that attribute this code
+                //makes sure it shows up on the input form on "UpdateCard2"
+                if(UpdateFirstCheck.isSelected()){
+                    UpdateFirstText.setVisible(true);
+                    UFLabel.setVisible(true);
+                }else{
+                    UpdateFirstText.setVisible(false);
+                    UFLabel.setVisible(false);
+                }
+                if(UpdateLastCheck.isSelected()){
+                    UpdateLastText.setVisible(true);
+                    ULLabel.setVisible(true);
+                }else{
+                    UpdateLastText.setVisible(false);
+                    ULLabel.setVisible(false);
+                }
+                if(UpdateAddressCheck.isSelected()){
+                    UpdateAddressText.setVisible(true);
+                    UALabel.setVisible(true);
+                }else{
+                    UpdateAddressText.setVisible(false);
+                    UALabel.setVisible(false);
+                }
+                if(UpdateNumberCheck.isSelected()){
+                    UpdateNumText.setVisible(true);
+                    UNLabel.setVisible(true);
+                }else{
+                    UpdateNumText.setVisible(false);
+                    UNLabel.setVisible(false);
+                }
+                if(UpdateInsuranceCheck.isSelected()){
+                    UpdateInsuranceText.setVisible(true);
+                    UITLabel.setVisible(true);
+                }else{
+                    UpdateInsuranceText.setVisible(false);
+                    UITLabel.setVisible(false);
+                }
+                if(UpdateCopayCheck.isSelected()){
+                    UpdateCopayText.setVisible(true);
+                    UCPLabel.setVisible(true);
+                }else{
+                    UpdateCopayText.setVisible(false);
+                    UCPLabel.setVisible(false);
+                }
+                if(UpdatePTCheck.isSelected()){
+                    UpdatePTText.setVisible(true);
+                    UPTLabel.setVisible(true);
+                }else{
+                    UpdatePTText.setVisible(false);
+                    UPTLabel.setVisible(false);
+                }
+                if(UpdatePhysNameCheck.isSelected()){
+                    UpdatePhysNameText.setVisible(true);
+                    UPNameLabel.setVisible(true);
+                }else{
+                    UpdatePhysNameText.setVisible(false);
+                    UPNameLabel.setVisible(false);
+                }
+                if(UpdatePhysNumCheck.isSelected()){
+                    UpdatePhysNumText.setVisible(true);
+                    UPNumLabel.setVisible(true);
+                }else{
+                    UpdatePhysNumText.setVisible(false);
+                    UPNumLabel.setVisible(false);
+                }
+                if(UpdateAllergyCheck.isSelected()){
+                    UpdateAllergyText.setVisible(true);
+                    UAllergyLabel.setVisible(true);
+                }else{
+                    UpdateAllergyText.setVisible(false);
+                    UAllergyLabel.setVisible(false);
+                }
+                if(UpdateIllnessCheck.isSelected()){
+                    UpdateIllnessText.setVisible(true);
+                    UIllnessLabel.setVisible(true);
+                }else{
+                    UpdateIllnessText.setVisible(false);
+                    UIllnessLabel.setVisible(false);
+                }
+                //show the next form in the update patient function
+                c1.show(PanelContainer, "UpdateCard2");
+            }
+        });
+        ModifyPatientButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                c1.show(PanelContainer, "UpdateCard");
+            }
+        });
+        UpdateSubmitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                c1.show(PanelContainer, "DisplayCard");
+
+                //reset the checkboxes
+                UpdateFirstCheck.setSelected(false);
+                UpdateLastCheck.setSelected(false);
+                UpdateAddressCheck.setSelected(false);
+                UpdateNumberCheck.setSelected(false);
+                UpdateInsuranceCheck.setSelected(false);
+                UpdateCopayCheck.setSelected(false);
+                UpdatePTCheck.setSelected(false);
+                UpdatePhysNameCheck.setSelected(false);
+                UpdatePhysNumCheck.setSelected(false);
+                UpdateAllergyCheck.setSelected(false);
+                UpdateIllnessCheck.setSelected(false);
+            }
+        });
+
     }
 
     public static void main(String[] args) {

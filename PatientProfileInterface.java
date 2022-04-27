@@ -50,6 +50,12 @@ public class PatientProfileInterface {
     private JTextField DeleteDobText;
     private JLabel DisplayLabel;
     private JComboBox newInsuranceText;
+    private JPanel FindPanel;
+    private JLabel FindLastLabel;
+    private JTextField FindLastText;
+    private JButton FindSubmitButton;
+    private JTextField FindDobText;
+    private JLabel FindDobLable;
 
 
     private CardLayout c1 = (CardLayout)PanelContainer.getLayout();
@@ -231,6 +237,27 @@ public class PatientProfileInterface {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+        });
+        FindPatientButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                c1.show(PanelContainer, "FindCard");
+            }
+        });
+        FindSubmitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //pull info from GUI text fields
+                String fLast = FindLastText.getText();
+                String fDOB = FindDobText.getText();
+                //pass info to logical function
+                DisplayLabel.setText(Pdb.displayProfile(fLast, fDOB));
+                //switch to display card
+                c1.show(PanelContainer, "DisplayCard");
+                //clean up variables
+                fLast = null;
+                fDOB = null;
             }
         });
     }

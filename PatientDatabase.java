@@ -164,7 +164,7 @@ public class PatientDatabase {
         Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
         return patient.PrintPatient();   // this will need to call so GUI function and/or pass the patient reference
         } else {
-            ErrorMessage("Patient does not exist");
+            return ErrorMessage("Patient does not exist");
         }
     }
 

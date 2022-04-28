@@ -411,7 +411,7 @@ public class PatientDatabase {
 
     // Error Message
     public String ErrorMessage(String Error){
-        String ErrorString = "Error: PatientDatabase: " + Error;
+        String ErrorString = "Error: " + Error;
         System.out.println(ErrorString);
         return ErrorString;
     }

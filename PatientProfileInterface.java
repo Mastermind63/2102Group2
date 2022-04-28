@@ -395,6 +395,9 @@ public class PatientProfileInterface {
                     case 4:
                         searchAttribute = PatientDatabase.AttributeTypes.ILLNESS;
                         break;
+                    case 5:
+                        searchAttribute = PatientDatabase.AttributeTypes.ANY;
+                        break;
                     default:
                         searchAttribute = null;
                         break;

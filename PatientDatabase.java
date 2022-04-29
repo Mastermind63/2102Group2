@@ -146,6 +146,7 @@ public class PatientDatabase {
             // when attributes are all modified, have button (or other) to pass new values
             boolean[] boolArray = gui.isChecked();
 
+            //if box was checked, update that value
             if (boolArray[0])patient.setFirstName(gui.getUpFirst());
             if (boolArray[1])patient.setLastName(gui.getUpLast());
             if (boolArray[2])patient.setAddress(gui.getUpAddress());
@@ -157,9 +158,6 @@ public class PatientDatabase {
             if (boolArray[8])patient.getMedConditions().setPhysNumber(gui.getUpPhysNum());
             if (boolArray[9])patient.getMedConditions().setAllergies(gui.getUpAllergy());
             if (boolArray[10])patient.getMedConditions().setIllnesses(gui.getUpIllness());
-
-            //TODO: this doesn't work with how I implemented this
-            //(boolArray[0])patient.setMedConditions(new Patient.MedicalConditions(guiInput, guiInput, guiInput, guiInput));
 
             updateDatabase();   // update database with new patient data
             if (boolArray[1]){
@@ -288,9 +286,13 @@ public class PatientDatabase {
         gui.setDisplayLabel("<html> ");
         // need to display all patients in above arraylist (only name and phone number)
         System.out.println("Patients with AttributeType: " + attribute.toString() + " with value: " + attrValue);
+        gui.appendDisplayLabel("Patients with AttributeType: " + attribute.toString() + " with value: " + attrValue + "<br/>");
         for (int i = 0; i < patientsWithAttribute.size(); i ++) {
             Patient patient = patientsWithAttribute.get(i);
             gui.appendDisplayLabel(patient.PrintSummary());
+        }
+        if (patientsWithAttribute.size() == 0){
+            gui.appendDisplayLabel("No Patients Match Criteria <br/> Make sure value is spelled correctly (i.e. 'Government' and not 'GOVERNMENT')");
         }
         gui.appendDisplayLabel(" <html>");
     }

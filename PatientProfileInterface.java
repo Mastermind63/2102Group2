@@ -113,15 +113,19 @@ public class PatientProfileInterface {
     private JLabel PTUNameLabel;
     private JLabel PTUDobLabel;
 
-
+    //create our card layout in order to swap between menus
     private CardLayout c1 = (CardLayout)PanelContainer.getLayout();
 
+    //listen to see if all new patient info is filled
     ArrayList<JTextField> newPatientInfoFields = new ArrayList<JTextField>(
             Arrays.asList(newLastText, newFirstText, newAddressText, newNumText, newDobText, newCopayText)
     );
+    //listen to see if all new patient medical info is filled
     ArrayList<JTextField> newPatientMedInfoFields = new ArrayList<JTextField>(
             Arrays.asList(newPhysNameText, newPhysNumText)
     );
+    //This is to determine if all the fields of Create new patient are filled correctly
+    //before allowing the user to submit the new patient information
     DocumentListener newPatientListener = new DocumentListener() {
         @Override
         public void insertUpdate(DocumentEvent e) {
@@ -159,11 +163,10 @@ public class PatientProfileInterface {
         }
     };
 
-
+    //constructor of PPi (all action listeners are defined within this class)
     public PatientProfileInterface(String FileName) {
-        //constructor of PPI
+        //create new patient database with filename given
         PatientDatabase Pdb = new PatientDatabase(FileName);
-        //Patient tempPatient;
 
         // add document listener to all newPatient fields --> to disable next/submit button until all fields filled
         for (JTextField field : newPatientInfoFields) {
@@ -188,6 +191,7 @@ public class PatientProfileInterface {
             }
         });
 
+        //Button to submit a new patient and display the new patients information
         SubmitNewPatientButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -203,6 +207,7 @@ public class PatientProfileInterface {
                 String tPhysName = newPhysNameText.getText();
                 String tPhysNum = newPhysNumText.getText();
                 //HAHA ENUMERATED TYPES ARE FUN!!!!
+                //These switch statements work with JDropBox to have user select one of each enumerated types
                 Patient.InsuranceType tInsurance;
                 int a = newInsuranceText.getSelectedIndex();
                 switch(a){
@@ -277,11 +282,12 @@ public class PatientProfileInterface {
                         break;
                 }
 
-
+                //create new temp patient to add to database
                 Patient tempPatient = new Patient(tLast, tFirst, tAddress, tNumber, tDOB, tInsurance, tCopay, tPType, tPhysName, tPhysNum, tAllergies, tIllness);
                 Pdb.insertProfile(tempPatient);
                 //tempPatient = null; --> this is still the reference to the new patient (ie you're overwriting the just added patient with null)
 
+                //display the new patient on the display label and switch to the display menu
                 DisplayLabel.setText(Pdb.displayProfile(tLast, tDOB));
                 c1.show(PanelContainer, "DisplayCard");
 
@@ -310,7 +316,7 @@ public class PatientProfileInterface {
                 tIllness = null;
             }
         });
-
+        //button to return from display card to main card
         ReturnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -318,12 +324,12 @@ public class PatientProfileInterface {
                 DisplayLabel.setText(null);
             }
         });
+        //button to delete a patient profile
         DeleteSubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //delete patient with info from text fields
-                //try the delete operation
-                try {
+                try { //try the delete operation
                     Pdb.deleteProfile(DeleteNameText.getText(), DeleteDobText.getText());
                     DisplayLabel.setText("Successfully Deleted Patient");
                 } catch (PatientNotFoundException delExc) { //catch exception
@@ -336,12 +342,14 @@ public class PatientProfileInterface {
                 DeleteDobText.setText(null);
             }
         });
+        //Button to go MainCard -> DeletePatientCard
         DeletePatientButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 c1.show(PanelContainer, "DeletePatientCard");
             }
         });
+        //Button to Exit program from the main menu
         ExitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -350,12 +358,14 @@ public class PatientProfileInterface {
                 System.exit(0);
             }
         });
+        //Button to go from MainMenuCard -> FindPatientCard
         FindPatientButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 c1.show(PanelContainer, "FindCard");
             }
         });
+        //Button to submit find patient query and switch to display
         FindSubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -372,6 +382,7 @@ public class PatientProfileInterface {
                 fDOB = null;
             }
         });
+        //button to submit patient search query and go to display
         SearchSubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -405,16 +416,19 @@ public class PatientProfileInterface {
                 }
                 //call search function
                 Pdb.getSummary(searchAttribute, specificAttribute, PatientProfileInterface.this);
-
+                //switch to display card
                 c1.show(PanelContainer, "DisplayCard");
             }
         });
+        //Button to go from MainMenuCard -> SearchDatabaseCard
         DatabaseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 c1.show(PanelContainer, "SearchCard");
             }
         });
+        //Submit update button one of two
+        //(goes from attributes user wants to change to actually being able to change said attributes)
         UpdateButtonOne.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -502,16 +516,18 @@ public class PatientProfileInterface {
                 c1.show(PanelContainer, "UpdateCard2");
             }
         });
+        //Button to go from MainMenuCard -> UpdatePatientCardOne
         ModifyPatientButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 c1.show(PanelContainer, "UpdateCard");
             }
         });
+        //Button to submit an update of a patient
         UpdateSubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //Calls the update function which also sets the display card to show updated paitent info
                 DisplayLabel.setText(Pdb.updateProfile(UpdatePTUNameText.getText(), UpdatePTUDobText.getText(), PatientProfileInterface.this));
 
                 //switch to display card
@@ -550,34 +566,20 @@ public class PatientProfileInterface {
         mainframe.pack();
         mainframe.setVisible(true);
 
-        /*
-        // Scan again or open
-        while (true) {
-            try {
-                JFrame mainframe = new JFrame("MIS");
-                mainframe.setContentPane(new PatientProfileInterface(fp).PanelContainer);
-                mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                mainframe.pack();
-                mainframe.setVisible(true);
-            } catch (Error e) {
-                System.out.println("Error opening the file: " + fp);
-                sc = new Scanner(System.in);
-                System.out.print("Enter database filename: ");
-                fp = sc.nextLine();
-                sc.close();
-            }
-        }
-         */
     }
 
 
     //PUBLIC METHODS TO BE CALLED FROM OTHER CLASSES
+    //allows other classes to set text in the display label
     public void setDisplayLabel(String text){
         PatientProfileInterface.this.DisplayLabel.setText(text);
     }
+    //allows other classes to APPEND text in the display label
     public void appendDisplayLabel(String text){
         PatientProfileInterface.this.DisplayLabel.setText(PatientProfileInterface.this.DisplayLabel.getText() + text);
     }
+    //all of these starting with "getUP" allow other classes to pull info from the UpdatePatient card
+    //when a patient is in the process of being updated
     public String getUpFirst(){
         return PatientProfileInterface.this.UpdateFirstText.getText();
     }
@@ -685,6 +687,8 @@ public class PatientProfileInterface {
         return tIllness;
     }
 
+    //returns a boolean array that allows other classes to see which of the checkboxes are checked
+    //this allows them to know what info a user wants to update about a patient
     public boolean[] isChecked(){
         boolean[] r = new boolean[11];
 

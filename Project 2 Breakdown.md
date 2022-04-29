@@ -90,30 +90,13 @@ Project 2 Breakdown
 <<<<<<< HEAD
 	- Teammember
 		- Name: Maximillain Mueller
-		- Rationale behind split
-		- Difficulties encountered
-		- What you would do differently
+		- Rationale behind split: All take seperate classes so we know ins and outs (less conflict as well)
+		- Difficulties encountered: Interfacing PPI.form and PPI.java with IntelljGUI Designer
+		- What you would do differently: 
 	- Time
-		- Time Spent on implementation:
-		- Time Spent on testing:
-		- Time Spent on integration:
-	- Method's and Attributes
-		- [ ]   Enter a New Patient
-		- [ ]   Delete a patient
-		- [ ]   Find & Display a patient
-		- [ ]   Find/Display Profile
-		- [ ]   Modify a patient Profile
-		- [ ]   Search the Database
-=======
-    - Teammember
-        - Name
-        - Rationale behind split
-        - Difficulties encountered
-        - What you would do differently
-    - Time
-        - Time Spent on implementation:
-        - Time Spent on testing:
-        - Time Spent on integration:
+		- Time Spent on implementation: 10 hours
+		- Time Spent on testing: 2 hours
+		- Time Spent on integration: 4 of 10 hours implementing
     - Method's and Attributes
         - [ ]   Enter a New Patient
             - [ ] Menu to enter profile data

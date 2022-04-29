@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 
 public class PatientDatabase {
     public enum AttributeTypes {
-        DOCTOR, INSURANCE, PATIENT_TYPE, ALLERGY, ILLNESS
+        DOCTOR, INSURANCE, PATIENT_TYPE, ALLERGY, ILLNESS, ANY
     };
 
     ArrayList<Patient> patientDB = new ArrayList<Patient>();
@@ -116,7 +116,6 @@ public class PatientDatabase {
                     break;
             }
 
-
             Patient patient = new Patient(lastName, firstName, address, phoneNum, DoB, insuranceType, copay, patientType, physName, physPhone, allergy, illness);
             insertProfile(patient);
         }
@@ -124,10 +123,6 @@ public class PatientDatabase {
     }
 
     public void insertProfile(Patient newPatient) {
-        // GUI -- prompt user for profile info & med conditions info
-        //   create new patient via Patient() constructor
-        //   then pass to this method
-
         patientDB.add(newPatient);
         updateDatabase();
     }
@@ -143,7 +138,6 @@ public class PatientDatabase {
         }
     }
 
-    // TODO: need way of passing textInput from GUI to method
     public String updateProfile(String lastName, String DoB, PatientProfileInterface gui) {
         try {
             Patient patient = patientDB.get(getPatientIndex(lastName, DoB));
@@ -278,6 +272,9 @@ public class PatientDatabase {
                         }
                     }
                     break;
+                case ANY:
+                    patientsWithAttribute.add(curPatient);
+                    break;
                 default:
                     System.out.println("Not a valid attribute");
                     break;
@@ -286,7 +283,6 @@ public class PatientDatabase {
         return patientsWithAttribute;
     }
 
-    // TODO: need to pass/display patient list in GUI
     public void getSummary(AttributeTypes attribute, String attrValue, PatientProfileInterface gui) {
         ArrayList<Patient> patientsWithAttribute = getPatientByAttribute(attribute, attrValue);
         gui.setDisplayLabel("<html> ");
@@ -419,7 +415,7 @@ public class PatientDatabase {
 
     // Error Message
     public String ErrorMessage(String Error){
-        String ErrorString = "Error: PatientDatabase: " + Error;
+        String ErrorString = "Error: " + Error;
         System.out.println(ErrorString);
         return ErrorString;
     }

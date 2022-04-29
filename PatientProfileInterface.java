@@ -1,7 +1,13 @@
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class PatientProfileInterface {
@@ -110,10 +116,63 @@ public class PatientProfileInterface {
 
     private CardLayout c1 = (CardLayout)PanelContainer.getLayout();
 
+    ArrayList<JTextField> newPatientInfoFields = new ArrayList<JTextField>(
+            Arrays.asList(newLastText, newFirstText, newAddressText, newNumText, newDobText, newCopayText)
+    );
+    ArrayList<JTextField> newPatientMedInfoFields = new ArrayList<JTextField>(
+            Arrays.asList(newPhysNameText, newPhysNumText)
+    );
+    DocumentListener newPatientListener = new DocumentListener() {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            changedUpdate(e);
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            changedUpdate(e);
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            boolean newPatientEnable = true;
+            boolean submitNewPatientEnable = true;
+
+            for (JTextField field : newPatientInfoFields) {
+                if (field.getText().isEmpty()) {
+                    newPatientEnable = false;
+                }
+                try {
+                    Float.parseFloat(newCopayText.getText());
+                } catch (Exception wrongValType) {
+                    newPatientEnable = false;
+                }
+            }
+            for (JTextField field : newPatientMedInfoFields) {
+                if (field.getText().isEmpty()) {
+                    submitNewPatientEnable = false;
+                }
+            }
+
+            toMedButton.setEnabled(newPatientEnable);
+            SubmitNewPatientButton.setEnabled(submitNewPatientEnable);
+        }
+    };
+
+
     public PatientProfileInterface(String FileName) {
         //constructor of PPI
         PatientDatabase Pdb = new PatientDatabase(FileName);
         //Patient tempPatient;
+
+        // add document listener to all newPatient fields --> to disable next/submit button until all fields filled
+        for (JTextField field : newPatientInfoFields) {
+            field.getDocument().addDocumentListener(newPatientListener);
+        }
+        for (JTextField field : newPatientMedInfoFields) {
+            field.getDocument().addDocumentListener(newPatientListener);
+        }
+
 
         NewPatientButton.addActionListener(new ActionListener() {
             @Override
@@ -217,6 +276,7 @@ public class PatientProfileInterface {
                         tIllness = null;
                         break;
                 }
+
 
                 Patient tempPatient = new Patient(tLast, tFirst, tAddress, tNumber, tDOB, tInsurance, tCopay, tPType, tPhysName, tPhysNum, tAllergies, tIllness);
                 Pdb.insertProfile(tempPatient);
@@ -335,6 +395,9 @@ public class PatientProfileInterface {
                         break;
                     case 4:
                         searchAttribute = PatientDatabase.AttributeTypes.ILLNESS;
+                        break;
+                    case 5:
+                        searchAttribute = PatientDatabase.AttributeTypes.ANY;
                         break;
                     default:
                         searchAttribute = null;
@@ -472,10 +535,10 @@ public class PatientProfileInterface {
                 UpdatePTUNameText.setText(null);
             }
         });
-
     }
 
     public static void main(String[] args) {
+        // First scan
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter database filename: ");
         String fp = sc.nextLine();
@@ -486,6 +549,25 @@ public class PatientProfileInterface {
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainframe.pack();
         mainframe.setVisible(true);
+
+        /*
+        // Scan again or open
+        while (true) {
+            try {
+                JFrame mainframe = new JFrame("MIS");
+                mainframe.setContentPane(new PatientProfileInterface(fp).PanelContainer);
+                mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                mainframe.pack();
+                mainframe.setVisible(true);
+            } catch (Error e) {
+                System.out.println("Error opening the file: " + fp);
+                sc = new Scanner(System.in);
+                System.out.print("Enter database filename: ");
+                fp = sc.nextLine();
+                sc.close();
+            }
+        }
+         */
     }
 
 

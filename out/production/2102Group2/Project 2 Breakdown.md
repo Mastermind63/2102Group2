@@ -24,7 +24,7 @@ Project 2 Breakdown
 		- Difficulties encountered: Storing Enumerated Types
 		- What you would do differently:
 	- Time
-		- Time Spent on implementation: 4 hours
+		- Time Spent on implementation: 8 hours
 		- Time Spent on testing: 2 Hours
 		- Time Spent on integration: 4 Hours
 	- Method's and Attributes
@@ -71,39 +71,39 @@ Project 2 Breakdown
         - [x] Print all Vars at once
 - Patient Database
 	- Teammember
-		- Name
-		- Rationale behind split
-		- Difficulties encountered
-		- What you would do differently
+		- Name: Benjamin Nowaki
+		- Rationale behind split: even split
+		- Difficulties encountered: Interfacing the systems, finding individuals on attributes
+		- What you would do differently: Start the project slightly earlier
 	- Time
-		- Time Spent on implementation:
-		- Time Spent on testing:
-		- Time Spent on integration:
+		- Time Spent on implementation: 6 hours
+		- Time Spent on testing: 4 hours
+		- Time Spent on integration: 3 hours
 	- Method's and Attributes
 		- [x] Pull From File
-		- [ ]   Insert Profile
+		- [x]   Insert Profile
 		- [x]   Delete Profile
-		- [ ]   Update Profile
-		- [ ]   Find/Display Profile
-		- [ ]   Summary Reports
+		- [x]   Update Profile
+		- [x]   Find/Display Profile
+		- [x]   Summary Reports
 - Patient Profile Interface
 <<<<<<< HEAD
 	- Teammember
 		- Name: Maximillain Mueller
-		- Rationale behind split
-		- Difficulties encountered
-		- What you would do differently
+		- Rationale behind split: Even Split
+		- Difficulties encountered: Buttons meshing up to backend portion
+		- What you would do differently: 
 	- Time
-		- Time Spent on implementation:
-		- Time Spent on testing:
-		- Time Spent on integration:
+		- Time Spent on implementation: 8 hours
+		- Time Spent on testing: 2 hours
+		- Time Spent on integration: 3 hours
 	- Method's and Attributes
-		- [ ]   Enter a New Patient
-		- [ ]   Delete a patient
-		- [ ]   Find & Display a patient
-		- [ ]   Find/Display Profile
-		- [ ]   Modify a patient Profile
-		- [ ]   Search the Database
+		- [x]   Enter a New Patient
+		- [x]   Delete a patient
+		- [x]   Find & Display a patient
+		- [x]   Find/Display Profile
+		- [x]   Modify a patient Profile
+		- [x]   Search the Database
 =======
     - Teammember
         - Name
@@ -115,25 +115,25 @@ Project 2 Breakdown
         - Time Spent on testing:
         - Time Spent on integration:
     - Method's and Attributes
-        - [ ]   Enter a New Patient
-            - [ ] Menu to enter profile data
-            - [ ] Menu to enter medical data
-            - [ ] Button save all data
-                - [ ] Displays message stating successful addition of patient  
-        - [ ]   Delete a patient
+        - [x]   Enter a New Patient
+            - [x] Menu to enter profile data
+            - [x] Menu to enter medical data
+            - [x] Button save all data
+                - [x] Displays message stating successful addition of patient  
+        - [x]   Delete a patient
             - User supplies last name & dob
-            - [ ] Displays message stating successful deletion of patient
-        - [ ]   Find & Display a patient
+            - [x] Displays message stating successful deletion of patient
+        - [x]   Find & Display a patient
             - User supplies last name & dob
-            - [ ] Entire patient profile is displayed
-        - [ ]   Find/Display Profile
-        - [ ]   Modify a patient Profile
+            - [x] Entire patient profile is displayed
+        - [x]   Find/Display Profile
+        - [x]   Modify a patient Profile
             - Display profile, select attribute to modify, prompt user to enter new value
-            - [ ] Button to save update, then display new profile
-        - [ ]   Search the Database
-            - [ ] Present menu of 5 attributes: doctor, insurance, patient type, allergy, illness
-            - [ ] Display summary report for selected attribute
-                - [ ] Summary report displays name & phone num (not whole profile) 
+            - [x] Button to save update, then display new profile
+        - [x]   Search the Database
+            - [x] Present menu of 5 attributes: doctor, insurance, patient type, allergy, illness
+            - [x] Display summary report for selected attribute
+                - [x] Summary report displays name & phone num (not whole profile) 
 >>>>>>> main
 
 ## Test Plan
@@ -142,34 +142,34 @@ This is our plan for testing... To be modified.
   - [x] Patient Class
     - [x] Stores all Necessary information
     - [x] Uses enumerated types
-    - [ ] Tested Get Functions
-    - [ ] Tested Update Functions
-    - [ ] Tested Init Functions
-    - [ ] Tested Constructor
-  - [ ] Patient Database
-    - [ ] Import Functionality
-    - [ ] Export Functionality
+    - [x] Tested Get Functions
+    - [x] Tested Update Functions
+    - [x] Tested Init Functions
+    - [x] Tested Constructor
+  - [x] Patient Database
+    - [x] Import Functionality
+    - [x] Export Functionality
     - [ ] 
-  - [ ] GUI Interface
-    - [ ] Interface Accepts database File
-    - [ ] Loop Prompt for action
-    - [ ] GUI Exit Option (top right x box)
+  - [x] GUI Interface
+    - [x] Interface Accepts database File (done as a file entered, read the Readme.md)
+    - [x] Loop Prompt for action
+    - [x] GUI Exit Option (top right x box)
 - Testing of Functionality
   - [x] Bulk Load Patients
     - [x] CLI
-  - [ ] Delete a Patient
-    - [ ] CLI
-    - [ ] GUI
+  - [x] Delete a Patient
+    - [x] CLI
+    - [x] GUI
   - [x] Find and Display Patient
     - [x] CLI
     - [x] GUI
-  - [ ] Modify a Patient Profile
-    - [ ] CLI
-    - [ ] GUI
-  - [ ] Search Database (only name and phone dispayed)
-    - [ ] CLI
-    - [ ] GUI
+  - [x] Modify a Patient Profile
+    - [x] CLI
+    - [x] GUI
+  - [x] Search Database (only name and phone dispayed)
+    - [x] CLI
+    - [x] GUI
 - Issues Encountered:
-  - [ ] The system seems to run through the data and replace the copays with their values in floats
-  - [ ] Enumerated Type drop down lists in GUI and MIS
+  - [x] The system seems to run through the data and replace the copays with their values in floats
+  - [x] Enumerated Type drop down lists in GUI and MIS
   - [ ] 

@@ -25,8 +25,8 @@ Project 2 Breakdown
 		- What you would do differently:
 	- Time
 		- Time Spent on implementation: 4 hours
-		- Time Spent on testing: 
-		- Time Spent on integration:
+		- Time Spent on testing: 2 Hours
+		- Time Spent on integration: 4 Hours
 	- Method's and Attributes
         - [x]   Class Attributes
             - [x]   Last Name
